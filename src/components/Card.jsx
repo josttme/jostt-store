@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 export function Card({
 	title,
@@ -15,7 +15,19 @@ export function Card({
 	// Estado para controlar la carga de la imagen
 	const [isLoading, setIsLoading] = useState(false)
 
+	const navigate = useNavigate()
+
+	const handleCategoryRoute = (e, category, categoryId) => {
+		e.stopPropagation()
+
+		const categoryFormated = category.toLowerCase()
+		const categoryRoute = `/category/${categoryFormated}-${categoryId}`
+
+		if (location.pathname !== categoryRoute) navigate(categoryRoute)
+	}
+
 	const favorite = isFavorite ? 'fill-red-600 stroke-red-600' : 'fill-none'
+
 	return (
 		<div
 			onClick={handleProduct}
@@ -58,13 +70,14 @@ export function Card({
 						onLoad={() => setIsLoading(true)} // Manejador de evento para indicar que la imagen se ha cargado
 					/>
 				</div>
-				<Link
-					to={`/category/${category}-${categoryId}`}
-					onClick={(e) => e.stopPropagation()}
+				<button
+					onClick={(e) => {
+						handleCategoryRoute(e, category, categoryId)
+					}}
 					className="absolute bottom-0 left-0 m-2 rounded-lg bg-white/80 px-3 py-0.5 text-sm text-black transition-all duration-200 hover:bg-black/60 hover:text-white"
 				>
 					{category}
-				</Link>
+				</button>
 			</figure>
 			<h1 className="p-5 pb-1 text-xl">{title}</h1>
 			<div className="mb-3 flex w-full items-center justify-between  px-5">
@@ -118,7 +131,7 @@ Card.propTypes = {
 	image: PropTypes.string.isRequired,
 	category: PropTypes.string.isRequired,
 	categoryId: PropTypes.number.isRequired,
-	handleProduct: PropTypes.func.isRequired,
-	toggledFavorites: PropTypes.func.isRequired,
-	isFavorite: PropTypes.bool.isRequired
+	handleProduct: PropTypes.func,
+	toggledFavorites: PropTypes.func,
+	isFavorite: PropTypes.bool
 }

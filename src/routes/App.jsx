@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home } from '../pages/Home'
 import { Layout } from '../layout/Layout'
 import { Product } from '../pages/Product'
+import { Category } from '../pages/Category'
 
 function App() {
 	return (
@@ -10,6 +11,7 @@ function App() {
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Home />} />
 					<Route path="/product/:id" element={<Product />} />
+					<Route path="/category/:id" element={<Category />} />
 				</Route>
 				<Route path="*" element={<h1>404</h1>} />
 			</Routes>

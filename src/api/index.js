@@ -22,3 +22,11 @@ export const getProductById = ({ productId }) => {
 		product: mappedProducts.find((product) => product.id === productId)
 	}
 }
+
+export const getProductsByCategory = (categoryId) => {
+	return {
+		products: mappedProducts.filter(
+			(product) => product.categoryId === categoryId
+		)
+	}
+}
