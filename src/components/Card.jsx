@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 export function Card({
 	title,
@@ -17,13 +18,15 @@ export function Card({
 	return (
 		<div
 			onClick={handleProduct}
-			className="hover:shadow-4xl max-w-sm cursor-pointer overflow-hidden rounded-lg bg-white shadow-xl transition duration-300"
+			className="max-w-sm cursor-pointer overflow-hidden rounded-lg bg-white shadow-xl transition duration-300 hover:shadow-4xl"
 		>
 			<figure className="relative w-full">
-				<div className="absolute right-2  top-2 z-50">
+				<div
+					onClick={(e) => e.stopPropagation()}
+					className="absolute right-2  top-2 z-50"
+				>
 					<button
 						type="button"
-						onClick={toggledFavorites}
 						className="grid h-8 w-8 place-content-center rounded-full bg-slate-100/80 stroke-black p-2 transition duration-300 hover:bg-white/90 hover:stroke-[#ff234e]"
 					>
 						<svg
@@ -42,7 +45,7 @@ export function Card({
 				</div>
 				<div className="relative ">
 					{!isLoading && (
-						<div className=" animate-pulse-fast absolute left-0 top-0 h-full w-full bg-gray-300" />
+						<div className=" absolute left-0 top-0 h-full w-full animate-pulse-fast bg-gray-300" />
 					)}
 
 					<img
@@ -54,14 +57,21 @@ export function Card({
 						onLoad={() => setIsLoading(true)} // Manejador de evento para indicar que la imagen se ha cargado
 					/>
 				</div>
-				<span className="absolute bottom-0 left-0 m-2 rounded-lg bg-white/80 px-3 py-0.5 text-sm text-black transition-all duration-200 hover:bg-black/60 hover:text-white">
+				<Link
+					to="/category/shoes-1"
+					onClick={(e) => e.stopPropagation()}
+					className="absolute bottom-0 left-0 m-2 rounded-lg bg-white/80 px-3 py-0.5 text-sm text-black transition-all duration-200 hover:bg-black/60 hover:text-white"
+				>
 					{category}
-				</span>
+				</Link>
 			</figure>
 			<h1 className="p-5 pb-1 text-xl">{title}</h1>
 			<div className="mb-3 flex w-full items-center justify-between  px-5">
 				<p className="text-3xl font-bold text-[#ff234e]">{`$${price}`}</p>
-				<div className="relative flex  items-center rounded-md  bg-gradient-to-r from-[#fcdde3] via-[#ff6174] via-30%  to-[#ff234e]  before:absolute  before:h-full before:w-full before:rounded-md   hover:before:bg-black/10">
+				<div
+					onClick={(e) => e.stopPropagation()}
+					className="relative flex  items-center rounded-md  bg-gradient-to-r from-[#fcdde3] via-[#ff6174] via-30%  to-[#ff234e]  before:absolute  before:h-full before:w-full before:rounded-md   hover:before:bg-black/10"
+				>
 					<div className="w-10 rounded-l-md bg-[#fcdde3] p-1  ">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"

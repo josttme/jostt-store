@@ -5,8 +5,12 @@ const mappedProducts = products?.map((product) => ({
 	title: product.title,
 	price: product.price,
 	description: product.description,
+	image: product.imageMedium,
 	category: product.category.name,
-	image: product.imageMedium
+	categoryId: product.category.id,
+	author: product.credit.author,
+	authorLink: product.credit.authorLink,
+	surceLink: product.credit.sourceLink
 }))
 
 export const getProducts = () => {
