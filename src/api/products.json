@@ -1,0 +1,106 @@
+{
+	"products": [
+		{
+			"id": "1",
+			"title": "Red Nike Sneaker",
+			"price": 24,
+			"description": "Red Nike Sneakers: Vibrant style and comfort in every step.",
+			"imageMedium": "/images-square/zapatillas-nike-rojas-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": "1",
+				"name": "Shoes"
+			},
+			"credit": {
+				"author": "Domino",
+				"authorLink": "https://unsplash.com/@dominostudio?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/unpaired-red-nike-sneaker-164_6wVEHfI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": "2",
+			"title": "Brown Nike Sneaker",
+			"price": 22,
+			"description": "Brown Nike Sneaker: Casual style with a touch of distinction.",
+			"imageMedium": "/images-square/brown-nike-sneaker-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": "1",
+				"name": "Shoes"
+			},
+			"credit": {
+				"author": "Maksim Larin",
+				"authorLink": "https://unsplash.com/@maksimcul8r?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/brown-nike-sneaker-on-yellow-textile-NOpsC3nWTzY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": "3",
+			"title": "White and Red Nike Shoe",
+			"price": 30,
+			"description": "White and Red Nike Athletic Shoe: Elevate your performance with style.",
+			"imageMedium": "/images-square/white-and-red-nike-athletic-shoe-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": "1",
+				"name": "Shoes"
+			},
+			"credit": {
+				"author": "Luis Felipe Lins",
+				"authorLink": "https://unsplash.com/@felipefxo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/white-and-red-nike-athletic-shoe-J2-wAQDckus?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": "4",
+			"title": "Brown and Orange Shoe",
+			"price": 29,
+			"description": "Brown and Orange Shoe: Make a statement with vibrant style.",
+			"imageMedium": "/images-square/brown-and-orange-shoe.medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": "1",
+				"name": "Shoes"
+			},
+			"credit": {
+				"author": "Erik Mclean",
+				"authorLink": "https://unsplash.com/@introspectivedsgn?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/black-and-white-nike-high-top-sneakers-1XHPuWvMQ8Q?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": "5",
+			"title": "Nike Air Force",
+			"price": 32,
+			"description": "Nike Air Force: Iconic style meets unmatched comfort.",
+			"imageMedium": "/images-square/nike-air-force-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": "1",
+				"name": "Shoes"
+			},
+			"credit": {
+				"author": "Jeff Tumale",
+				"authorLink": "https://unsplash.com/@jeff_tumale?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/a-person-wearing-a-hat-SD9Jyl1xNQ4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": "6",
+			"title": "Green and White Sneakers",
+			"price": 26,
+			"description": "Green and White Sneakers: Fresh style for every step.",
+			"imageMedium": "/images-square/green-and-white-sneakers-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": "1",
+				"name": "Shoes"
+			},
+			"credit": {
+				"author": "SoleSavy",
+				"authorLink": "https://unsplash.com/@solesavy?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/green-white-and-black-nike-air-jordan-1-s-LgzM6R0ojoE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		}
+	]
+}

@@ -1,11 +1,12 @@
 import { BrowserRouter } from 'react-router-dom'
 import { NavBar } from './components/NavBar'
+import { Home } from './pages/Home'
 
 function App() {
 	return (
 		<BrowserRouter>
 			<NavBar />
-			<h1 className="text-2xl font-bold">Hola Mundo!</h1>
+			<Home />
 		</BrowserRouter>
 	)
 }
