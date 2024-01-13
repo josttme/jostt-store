@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import { ProductContext } from '../context'
 
 export function Home() {
-	const { isFavorite, toggleFavorites } = useContext(ProductContext)
+	const { addToCart, isFavorite, toggleFavorites } = useContext(ProductContext)
 	const { products } = getProducts(null)
 
 	const navigate = useNavigate()
@@ -28,6 +28,7 @@ export function Home() {
 					handleProduct={() => handleProduct(product)}
 					toggledFavorites={(e) => toggledFavorites(e, product)}
 					isFavorite={isFavorite(product)}
+					addToCart={() => addToCart(product)}
 				></Card>
 			))}
 		</section>

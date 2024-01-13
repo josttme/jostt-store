@@ -4,7 +4,7 @@ import { Card } from '../components/Card'
 import { useNavigate } from 'react-router-dom'
 
 export function Favorites() {
-	const { favorites, toggleFavorites } = useContext(ProductContext)
+	const { addToCart, favorites, toggleFavorites } = useContext(ProductContext)
 
 	const navigate = useNavigate()
 	const handleProduct = (product) => {
@@ -26,6 +26,7 @@ export function Favorites() {
 						{...product}
 						handleProduct={() => handleProduct(product)}
 						toggledFavorites={(e) => toggledFavorites(e, product)}
+						addToCart={() => addToCart(product)}
 						isFavorite={true}
 					/>
 				))}

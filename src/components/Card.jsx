@@ -10,7 +10,8 @@ export function Card({
 	categoryId,
 	handleProduct,
 	toggledFavorites,
-	isFavorite
+	isFavorite,
+	addToCart
 }) {
 	// Estado para controlar la carga de la imagen
 	const [isLoading, setIsLoading] = useState(false)
@@ -24,6 +25,10 @@ export function Card({
 		const categoryRoute = `/category/${categoryFormated}-${categoryId}`
 
 		if (location.pathname !== categoryRoute) navigate(categoryRoute)
+	}
+	const handleAddToCart = (e, product) => {
+		e.stopPropagation()
+		addToCart(product)
 	}
 
 	const favorite = isFavorite ? 'fill-red-600 stroke-red-600' : 'fill-none'
@@ -84,7 +89,7 @@ export function Card({
 			<div className="mb-3 flex w-full items-center justify-between  px-5">
 				<p className="text-3xl font-bold text-[#ff234e]">{`$${price}`}</p>
 				<div
-					onClick={(e) => e.stopPropagation()}
+					onClick={(e) => handleAddToCart(e)}
 					className="relative flex  items-center rounded-md  bg-gradient-to-r from-[#fcdde3] via-[#ff6174] via-30%  to-[#ff234e]  before:absolute  before:h-full before:w-full before:rounded-md   hover:before:bg-black/10"
 				>
 					<div className="w-10 rounded-l-md bg-[#fcdde3] p-1  ">
@@ -134,5 +139,6 @@ Card.propTypes = {
 	categoryId: PropTypes.number.isRequired,
 	handleProduct: PropTypes.func,
 	toggledFavorites: PropTypes.func,
-	isFavorite: PropTypes.bool
+	isFavorite: PropTypes.bool,
+	addToCart: PropTypes.func
 }

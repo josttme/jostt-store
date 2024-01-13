@@ -1,8 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { getProductsByCategory } from '../api'
 import { Card } from '../components/Card'
+import { useContext } from 'react'
+import { ProductContext } from '../context'
 
 export function Category() {
+	const { addToCart, isFavorite, toggledFavorites } = useContext(ProductContext)
 	// Obtiene el parámetro "path" de la ruta actual
 	const { id } = useParams()
 	// Divide el "path" en partes
@@ -26,8 +29,9 @@ export function Category() {
 					key={product.id}
 					{...product}
 					handleProduct={() => handleProduct(product)}
-					// toggledFavorites={(e) => toggledFavorites(e, product)}
-					// isFavorite={isFavorite(product)}
+					toggledFavorites={(e) => toggledFavorites(e, product)}
+					isFavorite={isFavorite(product)}
+					addToCart={() => addToCart(product)}
 				/>
 			))}
 		</section>

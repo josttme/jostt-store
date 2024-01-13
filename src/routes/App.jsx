@@ -5,6 +5,7 @@ import { Product } from '../pages/Product'
 import { Category } from '../pages/Category'
 import { ProductProvider } from '../context'
 import { Favorites } from '../pages/Favorites'
+import { Cart } from '../pages/Cart'
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 						<Route path="/product/:id" element={<Product />} />
 						<Route path="/category/:id" element={<Category />} />
 						<Route path="/favorites" element={<Favorites />} />
+						<Route path="/cart" element={<Cart />} />
 					</Route>
 					<Route path="*" element={<h1>404</h1>} />
 				</Routes>

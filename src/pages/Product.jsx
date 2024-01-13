@@ -22,10 +22,7 @@ export function Product() {
 		authorLink,
 		surceLink
 	} = product
-	const { isFavorite, toggleFavorites } = useContext(ProductContext)
-	/*
-	if (loading) return <SkeletonProduct />
-*/
+	const { isFavorite, toggleFavorites, addToCart } = useContext(ProductContext)
 
 	const isFavorited = isFavorite(product)
 
@@ -70,12 +67,13 @@ export function Product() {
 				</Link>
 				<p className="text-4xl font-bold text-[#ff234e]">{`$${price}`}</p>
 				<div className="flex gap-4">
-					<Link
+					<button
 						to="/cart"
+						onClick={() => addToCart(product)}
 						className="relative grid w-60 items-center rounded-lg bg-gradient-to-r from-[#ff6174]  via-[#ff6174] via-30% to-[#ff234e] p-3 text-center    text-lg  text-white before:absolute before:h-full before:w-full before:rounded-lg hover:before:bg-black/10"
 					>
 						Add to cart
-					</Link>
+					</button>
 
 					<button
 						type="button"

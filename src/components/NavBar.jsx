@@ -1,6 +1,9 @@
+import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { ProductContext } from '../context'
 
 export function NavBar() {
+	const { quantityProducts } = useContext(ProductContext)
 	const currentUser = false
 	const activeClass = 'bg-gray-300 rounded-md p-1 px-2'
 	const classDefault = 'rounded-md p-1 px-2 duration-150 hover:bg-gray-300'
@@ -115,7 +118,7 @@ export function NavBar() {
 							/>
 						</svg>
 						<span className="absolute bottom-3 left-4 grid h-5 w-5 place-content-center rounded-full bg-gray-900  text-center text-xs text-white">
-							6
+							{quantityProducts}
 						</span>
 					</div>
 				</Link>
