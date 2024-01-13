@@ -40,6 +40,7 @@ export function Card({
 				>
 					<button
 						type="button"
+						onClick={toggledFavorites}
 						className="grid h-8 w-8 place-content-center rounded-full bg-slate-100/80 stroke-black p-2 transition duration-300 hover:bg-white/90 hover:stroke-[#ff234e]"
 					>
 						<svg

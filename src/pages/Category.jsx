@@ -13,7 +13,6 @@ export function Category() {
 	// Convierte lastPart a un número si es necesario (base 10)
 	const categoryId = parseInt(lastPart, 10)
 	const { products } = getProductsByCategory(categoryId)
-	console.log(products)
 
 	const navigate = useNavigate()
 	const handleProduct = (product) => {

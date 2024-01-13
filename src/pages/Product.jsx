@@ -2,6 +2,8 @@
 /* import { ProductContext } from '../context' */
 import { Link, useParams } from 'react-router-dom'
 import { getProductById } from '../api'
+import { useContext } from 'react'
+import { ProductContext } from '../context'
 /* import { useProductById } from '../hooks/useProductId'
 import { SkeletonProduct } from '../components/SkeletonProduct' */
 
@@ -15,23 +17,22 @@ export function Product() {
 		title,
 		description,
 		category,
+		categoryId,
 		author,
 		authorLink,
 		surceLink
 	} = product
-	/* const { addToCart, isFavorite, toggleFavorite } = useContext(ProductContext) */
-	/* 	
+	const { isFavorite, toggleFavorites } = useContext(ProductContext)
+	/*
 	if (loading) return <SkeletonProduct />
+*/
 
-	const { image, price, title, description, category } = product */
+	const isFavorited = isFavorite(product)
 
-	/* 	const isFavorited = isFavorite(product)
-  
 	const toggledFavorites = (product) => {
-    toggleFavorite(product)
+		toggleFavorites(product)
 	}
-  */
-	const isFavorited = false
+
 	const favorite = isFavorited ? 'fill-red-600 stroke-red-600' : 'fill-none'
 	return (
 		<section className=" mx-auto my-28 grid max-w-6xl grid-cols-2 gap-4 overflow-hidden  rounded-lg  bg-white shadow-lg">
@@ -62,7 +63,7 @@ export function Product() {
 					</a>
 				</div>
 				<Link
-					to="/category/shoes-1"
+					to={`/category/${category}-${categoryId}`}
 					className=" text-md w-20 rounded-lg bg-black/15  px-3 py-0.5 text-center text-black transition-all duration-200 hover:bg-black/60 hover:text-white"
 				>
 					{category}
@@ -78,7 +79,7 @@ export function Product() {
 
 					<button
 						type="button"
-						// onClick={() => toggledFavorites(product)}
+						onClick={() => toggledFavorites(product)}
 						className="grid h-12 w-12 place-content-center rounded-full bg-slate-200 stroke-black p-2 shadow-sm transition duration-300 hover:stroke-[red]"
 					>
 						<svg
