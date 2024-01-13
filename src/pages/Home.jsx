@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom'
-import getProducts from '../api'
+import { getProducts } from '../api'
 import { Card } from '../components/Card'
 
 export function Home() {
 	const { products } = getProducts(null)
+
 	const navigate = useNavigate()
 	const handleProduct = (product) => {
 		/* setSelectedProduct(product) */
