@@ -7,6 +7,7 @@ export function Card({
 	price,
 	image,
 	category,
+	categoryId,
 	handleProduct,
 	toggledFavorites,
 	isFavorite
@@ -58,7 +59,7 @@ export function Card({
 					/>
 				</div>
 				<Link
-					to="/category/shoes-1"
+					to={`/category/${category}-${categoryId}`}
 					onClick={(e) => e.stopPropagation()}
 					className="absolute bottom-0 left-0 m-2 rounded-lg bg-white/80 px-3 py-0.5 text-sm text-black transition-all duration-200 hover:bg-black/60 hover:text-white"
 				>
@@ -116,6 +117,7 @@ Card.propTypes = {
 	price: PropTypes.number.isRequired,
 	image: PropTypes.string.isRequired,
 	category: PropTypes.string.isRequired,
+	categoryId: PropTypes.number.isRequired,
 	handleProduct: PropTypes.func.isRequired,
 	toggledFavorites: PropTypes.func.isRequired,
 	isFavorite: PropTypes.bool.isRequired
