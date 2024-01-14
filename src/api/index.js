@@ -30,3 +30,14 @@ export const getProductsByCategory = (categoryId) => {
 		)
 	}
 }
+export const searchProducts = ({ search }) => {
+	if (search === '') return null
+
+	// Filtra los productos según si la palabra de búsqueda está incluida en el título
+	const productsSearch = mappedProducts.filter((product) =>
+		product.title.toLowerCase().includes(search.toLowerCase())
+	)
+
+	// Puedes devolver los productos coincidentes o realizar otras acciones según tus necesidades
+	return productsSearch
+}

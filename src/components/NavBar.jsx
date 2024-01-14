@@ -11,7 +11,7 @@ export function NavBar() {
 		<div className="flex h-16 w-full justify-between">
 			<div className="flex items-center gap-2 pl-6">
 				<NavLink to="/" className="text-lg font-bold">
-					Platzi Store
+					JosttStore
 				</NavLink>
 				<NavLink
 					to="/"
@@ -20,25 +20,25 @@ export function NavBar() {
 					All
 				</NavLink>
 				<NavLink
-					to="/category/electronics-2"
+					to="/category/t-shirt-2"
 					className={({ isActive }) => (isActive ? activeClass : classDefault)}
 				>
-					Electronics
+					T-Shirts
 				</NavLink>
 				<NavLink
-					to="/category/clothes-4"
+					to="/category/shoes-1"
 					className={({ isActive }) => (isActive ? activeClass : classDefault)}
 				>
-					Clothes
+					Shoes
 				</NavLink>
 				<NavLink
-					to="/category/furnitures-3"
+					to="/category/shoes-4"
 					className={({ isActive }) => (isActive ? activeClass : classDefault)}
 				>
 					Furnitures
 				</NavLink>
 				<NavLink
-					to="/category/toys-1"
+					to="/category/toys-3"
 					className={({ isActive }) => (isActive ? activeClass : classDefault)}
 				>
 					Toys
@@ -51,7 +51,7 @@ export function NavBar() {
 				</NavLink>
 			</div>
 			<div className="flex items-center gap-3 pr-6">
-				<span className="opacity-70">store@platzistore.com</span>
+				<span className="opacity-70">JosttStore@platzistore.com</span>
 				<NavLink
 					to="/favorites"
 					className={({ isActive }) => (isActive ? activeClass : classDefault)}
