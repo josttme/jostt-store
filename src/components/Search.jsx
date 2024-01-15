@@ -1,44 +1,34 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useRef } from 'react'
 import { PropTypes } from 'prop-types'
 import debounce from 'just-debounce-it'
 
-export function Search({ search, updateSearch, error, getProducts }) {
-	const [isError, setIsError] = useState(true)
+export function Search({ search, updateSearch, errorMessage, getProducts }) {
 	const inputRef = useRef()
 	const debounceGetProducts = useCallback(
 		debounce((search) => {
-			if (search.length >= 3) {
+			if (search.length > 1) {
 				getProducts({ search })
 			}
 		}, 300),
 		[getProducts]
 	)
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		if (search.length >= 3) {
-			getProducts({ search })
-		}
-	}
+
 	const handleChange = (e) => {
-		setIsError(true)
 		const newQuery = e.target.value
+
 		if (newQuery.startsWith(' ')) return
 		debounceGetProducts(newQuery)
 		updateSearch(newQuery)
-	}
-	const handleBlur = () => {
-		setIsError(false)
 	}
 
 	return (
 		<div className="mx-auto w-11/12 max-w-md pt-5">
 			<form
-				onSubmit={handleSubmit}
+				onClick={(e) => e.preventDefault()}
 				className="input-group relative mb-4 flex h-11 w-full  items-stretch"
 			>
 				<input
 					ref={inputRef}
-					onBlur={handleBlur}
 					className="form-control relative m-0 block w-full min-w-0 flex-auto rounded-bl-lg rounded-tl-lg  border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-gray-500 focus:bg-white focus:text-gray-700 focus:outline-none"
 					placeholder="Search..."
 					onChange={handleChange}
@@ -66,12 +56,8 @@ export function Search({ search, updateSearch, error, getProducts }) {
 					</svg>
 				</button>
 			</form>
-			<div
-				className={`h-6 w-full transition-all ${
-					isError ? 'visible' : 'invisible'
-				}`}
-			>
-				<p className="text-center text-red-500">{error}</p>
+			<div className={`h-6 w-full transition-all `}>
+				<p className="text-center text-red-500">{errorMessage}</p>
 			</div>
 		</div>
 	)
@@ -79,6 +65,6 @@ export function Search({ search, updateSearch, error, getProducts }) {
 Search.propTypes = {
 	search: PropTypes.string.isRequired,
 	updateSearch: PropTypes.func.isRequired,
-	error: PropTypes.string.isRequired,
-	getProducts: PropTypes.func.isRequired
+	getProducts: PropTypes.func.isRequired,
+	errorMessage: PropTypes.string.isRequired
 }

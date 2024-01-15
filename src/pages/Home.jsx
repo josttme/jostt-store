@@ -1,57 +1,64 @@
+import { useCallback, useContext, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getProducts } from '../api'
 import { Card } from '../components/Card'
-import { useContext } from 'react'
 import { ProductContext } from '../context'
 import { Search } from '../components/Search'
-import { useMessageSearch } from '../hooks/useMessageSearch'
 import { useProductSearch } from '../hooks/useProductSearch'
 
 export function Home() {
 	const { addToCart, isFavorite, toggleFavorites } = useContext(ProductContext)
-	const { products } = getProducts(null)
-	const [search, setSearch, error] = useMessageSearch()
-	const { productsSearch, fetchProductSearch, loadingSearch } =
-		useProductSearch({ search })
-
+	const {
+		productsSearch,
+		fetchProductSearch,
+		loadingSearch,
+		allProducts,
+		setSearch,
+		search,
+		errorMessage
+	} = useProductSearch()
 	const navigate = useNavigate()
-	const handleProduct = (product) => {
-		navigate(`/product/${product.id}`)
-	}
-	const toggledFavorites = (e, product) => {
-		e.stopPropagation()
-		toggleFavorites(product)
-	}
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		fetchProductSearch({ search })
-	}
+
+	// Verifica si allProducts está vacío antes de continuar
+	const handleProduct = useCallback(
+		(product) => {
+			navigate(`/product/${product.id}`)
+		},
+		[navigate]
+	)
+	useEffect(() => {}, [search])
+
+	const toggledFavorites = useCallback(
+		(e, product) => {
+			e.stopPropagation()
+			toggleFavorites(product)
+		},
+		[toggleFavorites]
+	)
+	const products = useMemo(() => {
+		if (!allProducts?.length) return
+
+		let products
+
+		productsSearch?.length
+			? (products = productsSearch)
+			: (products = allProducts)
+
+		return products
+	}, [allProducts, productsSearch])
 
 	return (
 		<div>
 			<Search
 				search={search}
 				updateSearch={setSearch}
-				error={error}
-				handleSubmit={handleSubmit}
+				errorMessage={errorMessage}
 				getProducts={fetchProductSearch}
 			/>
 			<section className="mx-auto grid max-w-5xl grid-cols-2 gap-4 pb-11 pt-5 md:grid-cols-3">
 				{loadingSearch ? (
 					<span>Cargando...</span>
-				) : search.length >= 3 && productsSearch.length > 1 ? (
-					productsSearch?.map((product) => (
-						<Card
-							key={product.id}
-							{...product}
-							handleProduct={() => handleProduct(product)}
-							toggledFavorites={(e) => toggledFavorites(e, product)}
-							isFavorite={isFavorite(product)}
-							addToCart={() => addToCart(product)}
-						/>
-					))
 				) : (
-					products.map((product) => (
+					products?.map((product) => (
 						<Card
 							key={product.id}
 							{...product}
