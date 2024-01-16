@@ -41,7 +41,7 @@ export function Card({
 			<figure className="relative w-full">
 				<div
 					onClick={(e) => e.stopPropagation()}
-					className="absolute right-2  top-2 z-50"
+					className="absolute right-2  top-2 z-20"
 				>
 					<button
 						type="button"

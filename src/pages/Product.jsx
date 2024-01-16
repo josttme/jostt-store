@@ -40,24 +40,28 @@ export function Product() {
 				<h1 className="text-4xl"> {title}</h1>
 				<div>
 					<p className="mb-2 text-lg">{description}</p>
-					Photo by{' '}
-					<a
-						href={authorLink}
-						target="_blank"
-						className="text-black/60 underline decoration-black/60   transition-all duration-200 hover:text-black  hover:decoration-black  "
-						rel="noreferrer"
-					>
-						{author}{' '}
-					</a>
-					on{' '}
-					<a
-						href={surceLink}
-						target="_blank"
-						className="text-black/60 underline decoration-black/60   transition-all duration-200 hover:text-black  hover:decoration-black  "
-						rel="noreferrer"
-					>
-						Unsplash
-					</a>
+					{!authorLink || (
+						<>
+							Photo by{' '}
+							<a
+								href={authorLink}
+								target="_blank"
+								className="text-black/60 underline decoration-black/60   transition-all duration-200 hover:text-black  hover:decoration-black  "
+								rel="noreferrer"
+							>
+								{author}{' '}
+							</a>
+							on{' '}
+							<a
+								href={surceLink}
+								target="_blank"
+								className="text-black/60 underline decoration-black/60   transition-all duration-200 hover:text-black  hover:decoration-black  "
+								rel="noreferrer"
+							>
+								Unsplash
+							</a>
+						</>
+					)}
 				</div>
 				<Link
 					to={`/category/${category}-${categoryId}`}

@@ -8,7 +8,7 @@ export function NavBar() {
 	const activeClass = 'bg-gray-300 rounded-md p-1 px-2'
 	const classDefault = 'rounded-md p-1 px-2 duration-150 hover:bg-gray-300'
 	return (
-		<div className="flex h-16 w-full justify-between">
+		<div className="fixed top-0 z-50 flex h-14 w-full justify-between bg-gray-100 ">
 			<div className="flex items-center gap-2 pl-6">
 				<NavLink to="/" className="text-lg font-bold">
 					JosttStore
@@ -60,11 +60,11 @@ export function NavBar() {
 				</NavLink>
 				{!currentUser ? (
 					<>
-						<NavLink to="/login" className={classDefault}>
+						<NavLink to="#" className={classDefault}>
 							Log In
 						</NavLink>
 						<NavLink
-							to="/signup"
+							to="#"
 							className={
 								'rounded-md bg-gray-900 p-1  px-2 text-slate-200 duration-150  hover:bg-gray-300 hover:text-slate-900 '
 							}
