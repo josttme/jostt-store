@@ -34,10 +34,10 @@ export function NavBar() {
 					Shoes
 				</NavLink>
 				<NavLink
-					to="/category/shoes-4"
+					to="/category/electronic-3"
 					className={({ isActive }) => (isActive ? activeClass : classDefault)}
 				>
-					Furnitures
+					Electronic
 				</NavLink>
 				<NavLink
 					to="/category/toys-3"

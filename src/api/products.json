@@ -203,6 +203,125 @@
 				"authorLink": null,
 				"sourceLink": null
 			}
+		},
+		{
+			"id": 16,
+			"title": "Wireless Headphones",
+			"price": 30,
+			"description": "Sound Freedom: Our Wireless Headphones deliver boundless sound with modern style. Experience auditory freedom at its finest.",
+			"imageMedium": "/images-square/wirelessheadphones-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": 3,
+				"name": "Electronic"
+			},
+			"credit": {
+				"author": "C D-X",
+				"authorLink": "https://unsplash.com/@cdx2?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/flatlay-photography-of-wireless-headphones-PDX_a_82obo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": 17,
+			"title": "Gray Apple Watch",
+			"price": 200,
+			"description": "Elevated Style: Apple Watch in Space Gray with Black Sports Band. Advanced technology meets sophisticated design at a glance.",
+			"imageMedium": "/images-square/grayapplewatch-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": 3,
+				"name": "Electronic"
+			},
+			"credit": {
+				"author": "Daniel Korpai",
+				"authorLink": "https://unsplash.com/@danielkorpai?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/space-gray-apple-watch-with-black-sports-band-hbTKIbuMmBI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": 18,
+			"title": "Black Wired Headphones",
+			"price": 30,
+			"description": "Immerse yourself in your favorite tunes with these stylish headphones delivering exceptional sound. Their classic design and durable cable make them the perfect companion for your daily audio experience.",
+			"imageMedium": "/images-square/blackwiredheadphones-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": 3,
+				"name": "Electronic"
+			},
+			"credit": {
+				"author": "Kiran CK",
+				"authorLink": "https://unsplash.com/@kiranck123?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/black-and-silver-headphones-on-white-surface-LSNJ-pltdu8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": 19,
+			"title": "Nikon DSLR Camera",
+			"price": 2.496,
+			"description": "Capture moments with style and exceptional quality.",
+			"imageMedium": "/images-square/nikonDSLRcamera-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": 3,
+				"name": "Electronic"
+			},
+			"credit": {
+				"author": "Varun Gaba",
+				"authorLink": "https://unsplash.com/@varunkgaba?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/black-nikon-dslr-camera-dcgB3CgidlU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": 20,
+			"title": "Gold Beats Headphones",
+			"price": 190,
+			"description": "Immerse yourself in high-quality sound with these stylish wireless headphones. The gold design adds a touch of luxury to your audio experience, while advanced technology ensures exceptional performance.",
+			"imageMedium": "/images-square/goldbeatsheadphones-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": 3,
+				"name": "Electronic"
+			},
+			"credit": {
+				"author": "Alexunder Hess",
+				"authorLink": "https://unsplash.com/@alexunderhess?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/gold-beats-wireless-headphones-bWZAPKm0zZE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": 21,
+			"title": "Cordless Mouse",
+			"price": 15,
+			"description": "Stylish and functional, our mouse blends style and comfort for a unique experience.",
+			"imageMedium": "/images-square/cordlessmouse-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": 3,
+				"name": "Electronic"
+			},
+			"credit": {
+				"author": "Oscar Ivan",
+				"authorLink": "https://unsplash.com/@oscaresquivel?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/closeup-photo-of-gray-and-black-cordless-mouse-ZtxED1cpB1E?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
+		},
+		{
+			"id": 22,
+			"title": "Silver iPhone X",
+			"price": 1000,
+			"description": "Experience elegance and power with the silver-toned iPhone X. Featuring a modern design and advanced features, this device redefines the mobile experience.",
+			"imageMedium": "/images-square/silveriPhoneX-medium.jpg",
+			"imageSmall": "",
+			"category": {
+				"id": 3,
+				"name": "Electronic"
+			},
+			"credit": {
+				"author": "Wesley Tingey",
+				"authorLink": "https://unsplash.com/@wesleyphotography?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+				"sourceLink": "https://unsplash.com/photos/silver-iphone-x-sPBRRwT_fKA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+			}
 		}
 	]
 }
