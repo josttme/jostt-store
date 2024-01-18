@@ -1,9 +1,10 @@
-import { useCallback, useContext, useEffect, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Card } from '../components/Card'
 import { ProductContext } from '../context'
 import { Search } from '../components/Search'
 import { useProductSearch } from '../hooks/useProductSearch'
+import { Pagination } from '../components/Pagination'
 
 export function Home() {
 	const { addToCart, isFavorite, toggleFavorites } = useContext(ProductContext)
@@ -16,7 +17,15 @@ export function Home() {
 		search,
 		errorMessage
 	} = useProductSearch()
+	const [productsHome, setProductsHome] = useState([])
+	const [currentPage, setCurrentPage] = useState(1)
+	const [postsPerPage] = useState(9)
 	const navigate = useNavigate()
+
+	useEffect(() => {
+		if (!allProducts?.length) return
+		setProductsHome(allProducts)
+	}, [allProducts])
 
 	// Verifica si allProducts está vacío antes de continuar
 	const handleProduct = useCallback(
@@ -25,7 +34,15 @@ export function Home() {
 		},
 		[navigate]
 	)
-	useEffect(() => {}, [search])
+	const location = useLocation() // Obtén la ubicación actual
+	const numeroPagina =
+		location.pathname === '/'
+			? 1
+			: Number(location.pathname.split('/page/')[1] || 1)
+	useEffect(() => {
+		// Actualiza la vista cuando cambie la ruta
+		setCurrentPage(numeroPagina)
+	}, [location])
 
 	const toggledFavorites = useCallback(
 		(e, product) => {
@@ -34,27 +51,30 @@ export function Home() {
 		},
 		[toggleFavorites]
 	)
+
 	const products = useMemo(() => {
-		if (!allProducts?.length) return
+		const postsPerPage = 9
+		const lastPostIndex = numeroPagina * postsPerPage
+		const firstPostIndex = lastPostIndex - postsPerPage
+		const currentPosts = productsHome.slice(firstPostIndex, lastPostIndex)
 
 		let products
 
 		productsSearch?.length
 			? (products = productsSearch)
-			: (products = allProducts)
-
+			: (products = currentPosts)
 		return products
-	}, [allProducts, productsSearch])
+	}, [productsHome, productsSearch, currentPage])
 
 	return (
-		<div>
+		<div className=" pb-10 pt-5">
 			<Search
 				search={search}
 				updateSearch={setSearch}
 				errorMessage={errorMessage}
 				getProducts={fetchProductSearch}
 			/>
-			<section className="mx-auto grid max-w-5xl grid-cols-2 gap-4 pb-11 pt-5 md:grid-cols-3">
+			<section className="mx-auto grid max-w-5xl grid-cols-2 gap-4 pt-5 md:grid-cols-3">
 				{loadingSearch ? (
 					<span>Cargando...</span>
 				) : (
@@ -70,6 +90,12 @@ export function Home() {
 					))
 				)}
 			</section>
+			<Pagination
+				totalPosts={allProducts?.length}
+				postsPerPage={postsPerPage}
+				setCurrentPage={setCurrentPage}
+				currentPage={currentPage}
+			/>
 		</div>
 	)
 }
