@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { SvgCartPlus } from './icons/SvgCartPlus'
 import { SvgHeart } from './icons/SvgHeart'
+import Image from './Image'
 
 export function Card({
 	title,
@@ -57,14 +58,11 @@ export function Card({
 					{!isLoading && (
 						<div className=" absolute left-0 top-0 h-full w-full animate-pulse-fast bg-gray-300" />
 					)}
-
-					<img
-						className={`${!isLoading && 'opacity-0'} h-full w-full`}
+					<Image
 						src={image}
-						alt={title}
-						width="200"
-						height="200"
-						onLoad={() => setIsLoading(true)} // Manejador de evento para indicar que la imagen se ha cargado
+						title={title}
+						isLoading={isLoading}
+						setIsLoading={setIsLoading}
 					/>
 				</div>
 				<button
