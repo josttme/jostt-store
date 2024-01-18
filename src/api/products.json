@@ -5,7 +5,7 @@
 			"title": "Red Nike Sneaker",
 			"price": 98,
 			"description": "Red Nike Sneakers: Vibrant style and comfort in every step.",
-			"imageMedium": "/images-square/zapatillas-nike-rojas-medium.jpg",
+			"imageMedium": "/images-square-min-webp/zapatillas-nike-rojas-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 1,
@@ -22,7 +22,7 @@
 			"title": "Brown Nike Sneaker",
 			"price": 115,
 			"description": "Brown Nike Sneaker: Casual style with a touch of distinction.",
-			"imageMedium": "/images-square/brown-nike-sneaker-medium.jpg",
+			"imageMedium": "/images-square-min-webp/brown-nike-sneaker-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 1,
@@ -39,7 +39,7 @@
 			"title": "White and Red Nike Sneaker",
 			"price": 110,
 			"description": "White and Red Nike Athletic Sneaker: Elevate your performance with style.",
-			"imageMedium": "/images-square/white-and-red-nike-athletic-shoe-medium.jpg",
+			"imageMedium": "/images-square-min-webp/white-and-red-nike-athletic-shoe-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 1,
@@ -56,7 +56,7 @@
 			"title": "Brown and Orange Sneaker",
 			"price": 150,
 			"description": "Brown and Orange Sneaker: Make a statement with vibrant style.",
-			"imageMedium": "/images-square/brown-and-orange-shoe.medium.jpg",
+			"imageMedium": "/images-square-min-webp/brown-and-orange-shoe.medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 1,
@@ -73,7 +73,7 @@
 			"title": "Nike Air Force",
 			"price": 125,
 			"description": "Nike Air Force: Iconic style meets unmatched comfort.",
-			"imageMedium": "/images-square/nike-air-force-medium.jpg",
+			"imageMedium": "/images-square-min-webp/nike-air-force-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 1,
@@ -90,7 +90,7 @@
 			"title": "Green and White Sneakers",
 			"price": 140,
 			"description": "Green and White Sneakers: Fresh style for every step.",
-			"imageMedium": "/images-square/green-and-white-sneakers-medium.jpg",
+			"imageMedium": "/images-square-min-webp/green-and-white-sneakers-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 1,
@@ -107,7 +107,7 @@
 			"title": "Black T-Shirt With Skull",
 			"price": 35,
 			"description": "Edgy black tee featuring a bold skull design for a stylish and rebellious look.",
-			"imageMedium": "/images-square/black-t-shirt-with-skull-medium.jpg",
+			"imageMedium": "/images-square-min-webp/black-t-shirt-with-skull-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 2,
@@ -124,7 +124,7 @@
 			"title": "Crew Neck T-Shirt",
 			"price": 32,
 			"description": "Classic black and white crew neck t-shirt for a timeless and versatile wardrobe essential.",
-			"imageMedium": "/images-square/crew-neck-t-shirt-medium.jpg",
+			"imageMedium": "/images-square-min-webp/crew-neck-t-shirt-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 2,
@@ -141,7 +141,7 @@
 			"title": "Cat Print Round Neck T-Shirt",
 			"price": 45,
 			"description": "Adorable white and blue crew-neck t-shirt with a playful cat print for a charming and whimsical touch.",
-			"imageMedium": "/images-square/cat-print-round-neck-t-shirt-medium.jpg",
+			"imageMedium": "/images-square-min-webp/cat-print-round-neck-t-shirt-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 2,
@@ -158,7 +158,7 @@
 			"title": "Black Long Sleeve Shirt",
 			"price": 39,
 			"description": "Classic black long sleeve shirt, exuding style and versatility for any occasion.",
-			"imageMedium": "/images-square/black-long-sleeve-shirt-medium.jpg",
+			"imageMedium": "/images-square-min-webp/black-long-sleeve-shirt-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 2,
@@ -175,7 +175,7 @@
 			"title": "Black and White T-Shirt",
 			"price": 32,
 			"description": "Timeless style meets comfort in this black and white crew neck t-shirt, a wardrobe essential.",
-			"imageMedium": "/images-square/black-and-white-t-shirt-medium.jpg",
+			"imageMedium": "/images-square-min-webp/black-and-white-t-shirt-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 2,
@@ -192,7 +192,7 @@
 			"title": "Blue and White Sneakers",
 			"price": 200,
 			"description": "Elevate your style with these super comfortable and trendy blue and white sneakers, perfect for any occasion.",
-			"imageMedium": "/images-square/blue-and-white-sneakers.jpg",
+			"imageMedium": "/images-square-min-webp/blue-and-white-sneakers.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 1,
@@ -209,7 +209,7 @@
 			"title": "Wireless Headphones",
 			"price": 30,
 			"description": "Sound Freedom: Our Wireless Headphones deliver boundless sound with modern style. Experience auditory freedom at its finest.",
-			"imageMedium": "/images-square/wirelessheadphones-medium.jpg",
+			"imageMedium": "/images-square-min-webp/wirelessheadphones-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 3,
@@ -226,7 +226,7 @@
 			"title": "Gray Apple Watch",
 			"price": 200,
 			"description": "Elevated Style: Apple Watch in Space Gray with Black Sports Band. Advanced technology meets sophisticated design at a glance.",
-			"imageMedium": "/images-square/grayapplewatch-medium.jpg",
+			"imageMedium": "/images-square-min-webp/grayapplewatch-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 3,
@@ -243,7 +243,7 @@
 			"title": "Black Wired Headphones",
 			"price": 30,
 			"description": "Immerse yourself in your favorite tunes with these stylish headphones delivering exceptional sound. Their classic design and durable cable make them the perfect companion for your daily audio experience.",
-			"imageMedium": "/images-square/blackwiredheadphones-medium.jpg",
+			"imageMedium": "/images-square-min-webp/blackwiredheadphones-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 3,
@@ -260,7 +260,7 @@
 			"title": "Nikon DSLR Camera",
 			"price": 2.496,
 			"description": "Capture moments with style and exceptional quality.",
-			"imageMedium": "/images-square/nikonDSLRcamera-medium.jpg",
+			"imageMedium": "/images-square-min-webp/nikonDSLRcamera-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 3,
@@ -277,7 +277,7 @@
 			"title": "Gold Beats Headphones",
 			"price": 190,
 			"description": "Immerse yourself in high-quality sound with these stylish wireless headphones. The gold design adds a touch of luxury to your audio experience, while advanced technology ensures exceptional performance.",
-			"imageMedium": "/images-square/goldbeatsheadphones-medium.jpg",
+			"imageMedium": "/images-square-min-webp/goldbeatsheadphones-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 3,
@@ -294,7 +294,7 @@
 			"title": "Cordless Mouse",
 			"price": 15,
 			"description": "Stylish and functional, our mouse blends style and comfort for a unique experience.",
-			"imageMedium": "/images-square/cordlessmouse-medium.jpg",
+			"imageMedium": "/images-square-min-webp/cordlessmouse-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 3,
@@ -311,7 +311,7 @@
 			"title": "Silver iPhone X",
 			"price": 1000,
 			"description": "Experience elegance and power with the silver-toned iPhone X. Featuring a modern design and advanced features, this device redefines the mobile experience.",
-			"imageMedium": "/images-square/silveriPhoneX-medium.jpg",
+			"imageMedium": "/images-square-min-webp/silveriPhoneX-medium.webp",
 			"imageSmall": "",
 			"category": {
 				"id": 3,
