@@ -1,13 +1,15 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Card } from '../components/Card'
 import { ProductContext } from '../context'
 import { Search } from '../components/Search'
 import { useProductSearch } from '../hooks/useProductSearch'
 import { Pagination } from '../components/Pagination'
+import { useNavigation } from '../utils'
 
 export function Home() {
-	const { addToCart, isFavorite, toggleFavorites } = useContext(ProductContext)
+	const { addToCart, isFavorite, toggledFavorites } = useContext(ProductContext)
+
 	const {
 		productsSearch,
 		fetchProductSearch,
@@ -17,24 +19,21 @@ export function Home() {
 		search,
 		errorMessage
 	} = useProductSearch()
+
 	const [productsHome, setProductsHome] = useState([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [postsPerPage] = useState(9)
+
 	const navigate = useNavigate()
+	const { navigateToProduct } = useNavigation(navigate)
 
 	useEffect(() => {
 		if (!allProducts?.length) return
 		setProductsHome(allProducts)
 	}, [allProducts])
 
-	// Verifica si allProducts está vacío antes de continuar
-	const handleProduct = useCallback(
-		(product) => {
-			navigate(`/product/${product.id}`)
-		},
-		[navigate]
-	)
-	const location = useLocation() // Obtén la ubicación actual
+	// Ubicación actual
+	const location = useLocation()
 	const numeroPagina =
 		location.pathname === '/'
 			? 1
@@ -43,14 +42,6 @@ export function Home() {
 		// Actualiza la vista cuando cambie la ruta
 		setCurrentPage(numeroPagina)
 	}, [location])
-
-	const toggledFavorites = useCallback(
-		(e, product) => {
-			e.stopPropagation()
-			toggleFavorites(product)
-		},
-		[toggleFavorites]
-	)
 
 	const products = useMemo(() => {
 		const postsPerPage = 9
@@ -82,10 +73,10 @@ export function Home() {
 						<Card
 							key={product.id}
 							{...product}
-							handleProduct={() => handleProduct(product)}
+							openProduct={() => navigateToProduct(product)}
 							toggledFavorites={(e) => toggledFavorites(e, product)}
 							isFavorite={isFavorite(product)}
-							addToCart={() => addToCart(product)}
+							addToCart={(e) => addToCart(e, product)}
 						/>
 					))
 				)}

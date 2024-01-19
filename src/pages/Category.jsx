@@ -1,7 +1,8 @@
+import { useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigation } from '../utils'
 import { getProductsByCategory } from '../api'
 import { Card } from '../components/Card'
-import { useContext } from 'react'
 import { ProductContext } from '../context'
 
 export function Category() {
@@ -18,20 +19,19 @@ export function Category() {
 	const { products } = getProductsByCategory(categoryId)
 
 	const navigate = useNavigate()
-	const handleProduct = (product) => {
-		/* setSelectedProduct(product) */
-		navigate(`/product/${product.id}`)
-	}
+
+	const { navigateToProduct } = useNavigation(navigate)
+
 	return (
 		<section className="mx-auto grid max-w-5xl grid-cols-2 gap-4 py-11 md:grid-cols-3">
 			{products?.map((product) => (
 				<Card
 					key={product.id}
 					{...product}
-					handleProduct={() => handleProduct(product)}
+					openProduct={() => navigateToProduct(product)}
 					toggledFavorites={(e) => toggledFavorites(e, product)}
 					isFavorite={isFavorite(product)}
-					addToCart={() => addToCart(product)}
+					addToCart={(e) => addToCart(e, product)}
 				/>
 			))}
 		</section>

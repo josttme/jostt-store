@@ -3,7 +3,8 @@ import useLocalStorage from './useLocalStorage'
 export const useCart = (key) => {
 	const [cartItems, setCartItems] = useLocalStorage(key)
 
-	const addToCart = (product) => {
+	const addToCart = (e, product) => {
+		e.stopPropagation()
 		const existingItem = cartItems.find((item) => item.id === product.id)
 		if (existingItem) {
 			const updatedCartItems = cartItems.map((item) => {

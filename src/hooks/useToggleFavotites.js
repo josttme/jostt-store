@@ -3,7 +3,8 @@ import useLocalStorage from './useLocalStorage'
 export function useToggleFavotites(key) {
 	const [products, setProducts] = useLocalStorage(key)
 
-	const toggleProduct = (product) => {
+	const toggledFavorites = (e, product) => {
+		e.stopPropagation()
 		const isProductInList = products.some((item) => item.id === product.id)
 
 		if (isProductInList) {
@@ -16,5 +17,5 @@ export function useToggleFavotites(key) {
 		}
 	}
 
-	return [products, toggleProduct]
+	return [products, toggledFavorites]
 }

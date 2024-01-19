@@ -1,21 +1,15 @@
 import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useNavigation } from '../utils'
 import { ProductContext } from '../context'
 import { Card } from '../components/Card'
-import { useNavigate } from 'react-router-dom'
 
 export function Favorites() {
-	const { addToCart, favorites, toggleFavorites } = useContext(ProductContext)
+	const { addToCart, favorites, toggledFavorites } = useContext(ProductContext)
 
 	const navigate = useNavigate()
-	const handleProduct = (product) => {
-		/* setSelectedProduct(product) */
-		navigate(`/product/${product.id}`)
-	}
 
-	const toggledFavorites = (e, product) => {
-		e.stopPropagation()
-		toggleFavorites(product)
-	}
+	const { navigateToProduct } = useNavigation(navigate)
 
 	return (
 		<div className="flex-grow ">
@@ -24,9 +18,9 @@ export function Favorites() {
 					<Card
 						key={product.id}
 						{...product}
-						handleProduct={() => handleProduct(product)}
+						openProduct={() => navigateToProduct(product)}
 						toggledFavorites={(e) => toggledFavorites(e, product)}
-						addToCart={() => addToCart(product)}
+						addToCart={(e) => addToCart(e, product)}
 						isFavorite={true}
 					/>
 				))}

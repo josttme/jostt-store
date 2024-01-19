@@ -7,7 +7,7 @@ export const ProductContext = createContext()
 
 export function ProductProvider({ children }) {
 	const [quantityProducts, setQuantityProducts] = useState(0)
-	const [favorites, toggleFavorites] = useToggleFavotites('store_favorites')
+	const [favorites, toggledFavorites] = useToggleFavotites('store_favorites')
 	const [
 		cartItems,
 		addToCart,
@@ -15,10 +15,10 @@ export function ProductProvider({ children }) {
 		increaseQuantity,
 		decreaseQuantity
 	] = useCart('store_cart')
-
 	const isFavorite = (product) => {
 		return favorites.some((item) => item.id === product.id)
 	}
+
 	useEffect(() => {
 		// Suma el total de la cantidad de productos en el carrito
 		setQuantityProducts(
@@ -30,7 +30,7 @@ export function ProductProvider({ children }) {
 
 	const valueContext = {
 		favorites,
-		toggleFavorites,
+		toggledFavorites,
 		isFavorite,
 		cartItems,
 		addToCart,

@@ -10,7 +10,7 @@ const mappedProducts = products?.map((product) => ({
 	categoryId: product.category.id,
 	author: product.credit.author,
 	authorLink: product.credit.authorLink,
-	surceLink: product.credit.sourceLink
+	sourceLink: product.credit.sourceLink
 }))
 
 export const getProducts = () => {
