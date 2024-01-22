@@ -6,6 +6,8 @@ import { useCart } from '../hooks/useCart'
 export const ProductContext = createContext()
 
 export function ProductProvider({ children }) {
+	const [allProducts, setAllProducts] = useState([])
+	const [productsLoaded, setProductsLoaded] = useState(false)
 	const [quantityProducts, setQuantityProducts] = useState(0)
 	const [favorites, toggledFavorites] = useToggleFavotites('store_favorites')
 	const [
@@ -37,7 +39,11 @@ export function ProductProvider({ children }) {
 		removeFromCart,
 		increaseQuantity,
 		decreaseQuantity,
-		quantityProducts
+		quantityProducts,
+		allProducts,
+		productsLoaded,
+		setAllProducts,
+		setProductsLoaded
 	}
 
 	return (

@@ -1,48 +1,54 @@
 import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import { getProductById } from '../api'
 import { ProductContext } from '../context'
 import { SvgHeart } from '../components/icons/SvgHeart'
 import { ProductInfo } from '../components/ProductInfo'
 import { ProductImage } from '../components/ProductImage'
 import { CategoryButton } from '../components/CategoryButton'
+import { getProductById } from '../services/products'
+import { useGetProducts } from '../hooks/useGetProducts'
 
 export function Product() {
+	const { isFavorite, toggledFavorites, addToCart } = useContext(ProductContext)
+
 	const { id } = useParams()
-	const productId = parseInt(id, 10)
-	const { product } = getProductById({ productId })
+
+	const { allProducts } = useGetProducts()
+
+	const product = getProductById({ id, allProducts })
+
+	if (!product) return
+
 	const {
-		image,
+		name,
 		price,
-		title,
+		mainImage,
 		description,
-		category,
+		categoryName,
 		categoryId,
-		author,
-		authorLink,
+		createdBy,
+		createdByLink,
 		sourceLink
 	} = product
-
-	const { isFavorite, toggledFavorites, addToCart } = useContext(ProductContext)
 
 	const isFavorited = isFavorite(product)
 
 	return (
 		<section className=" mx-auto my-28 grid max-w-6xl grid-cols-2 gap-4 overflow-hidden  rounded-lg  bg-white shadow-lg">
-			<ProductImage image={image} title={title} />
+			<ProductImage image={mainImage} title={name} />
 
 			<div className="flex flex-col gap-5 py-11 pl-8 pr-16 ">
 				<ProductInfo
-					title={title}
+					title={name}
 					description={description}
-					author={author}
-					authorLink={authorLink}
+					author={createdBy}
+					authorLink={createdByLink}
 					sourceLink={sourceLink}
-					category={category}
+					category={categoryName}
 					categoryId={categoryId}
 				/>
 				<CategoryButton
-					category={category}
+					category={categoryName}
 					categoryId={categoryId}
 					productPage
 				/>

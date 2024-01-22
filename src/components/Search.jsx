@@ -1,17 +1,16 @@
-import { useCallback, useRef } from 'react'
+import { useCallback } from 'react'
 import { PropTypes } from 'prop-types'
 import debounce from 'just-debounce-it'
 import { SvgSearch } from '../components/icons/SvgSearch'
+import { useSearch } from '../hooks/useSearch'
 
-export function Search({ search, updateSearch, errorMessage, getProducts }) {
-	const inputRef = useRef()
+export function Search({ getProducts, productsSearch, allProducts }) {
+	const { search, updateSearch, errorMessage } = useSearch({ productsSearch })
 	const debounceGetProducts = useCallback(
 		debounce((search) => {
-			if (search.length > 1) {
-				getProducts({ search })
-			}
+			getProducts({ search, allProducts })
 		}, 300),
-		[getProducts]
+		[getProducts, allProducts]
 	)
 
 	const handleChange = (e) => {
@@ -25,13 +24,12 @@ export function Search({ search, updateSearch, errorMessage, getProducts }) {
 	return (
 		<div className="mx-auto  w-11/12 max-w-md pt-5">
 			<form
-				onClick={(e) => e.preventDefault()}
+				onSubmit={(e) => e.preventDefault()}
 				className="mb-4 flex h-11 w-full  items-stretch"
 			>
 				<input
-					ref={inputRef}
 					className=" flex-auto rounded-bl-lg rounded-tl-lg  border  border-gray-300 bg-white  px-3 py-1.5  text-gray-700  focus:border-gray-500 focus:outline-none"
-					placeholder="Search..."
+					placeholder="Search"
 					onChange={handleChange}
 					type="search"
 					value={search}
@@ -47,8 +45,7 @@ export function Search({ search, updateSearch, errorMessage, getProducts }) {
 	)
 }
 Search.propTypes = {
-	search: PropTypes.string.isRequired,
-	updateSearch: PropTypes.func.isRequired,
 	getProducts: PropTypes.func.isRequired,
-	errorMessage: PropTypes.string.isRequired
+	productsSearch: PropTypes.array,
+	allProducts: PropTypes.array
 }

@@ -9,8 +9,8 @@ import { Cart } from '../pages/Cart'
 
 function App() {
 	return (
-		<ProductProvider>
-			<BrowserRouter>
+		<BrowserRouter>
+			<ProductProvider>
 				<Routes>
 					<Route path="/" element={<Layout />}>
 						<Route index element={<Home />} />
@@ -22,8 +22,8 @@ function App() {
 					</Route>
 					<Route path="*" element={<h1>404</h1>} />
 				</Routes>
-			</BrowserRouter>
-		</ProductProvider>
+			</ProductProvider>
+		</BrowserRouter>
 	)
 }
 

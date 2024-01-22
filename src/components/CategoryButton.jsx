@@ -29,6 +29,6 @@ export function CategoryButton({ category, categoryId, productPage }) {
 
 CategoryButton.propTypes = {
 	category: PropTypes.string.isRequired,
-	categoryId: PropTypes.number.isRequired,
-	productPage: PropTypes.bool.isRequired
+	categoryId: PropTypes.string.isRequired,
+	productPage: PropTypes.bool
 }

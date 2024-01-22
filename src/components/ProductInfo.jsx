@@ -47,15 +47,15 @@ export function ProductInfoAuthor({ author, authorLink, sourceLink }) {
 	)
 }
 ProductInfoAuthor.propTypes = {
-	author: PropTypes.string.isRequired,
-	authorLink: PropTypes.string.isRequired,
-	sourceLink: PropTypes.string.isRequired
+	author: PropTypes.string,
+	authorLink: PropTypes.string,
+	sourceLink: PropTypes.string
 }
 
 ProductInfo.propTypes = {
 	title: PropTypes.string.isRequired,
 	description: PropTypes.string.isRequired,
-	author: PropTypes.string.isRequired,
-	authorLink: PropTypes.string.isRequired,
-	sourceLink: PropTypes.string.isRequired
+	author: PropTypes.string,
+	authorLink: PropTypes.string,
+	sourceLink: PropTypes.string
 }

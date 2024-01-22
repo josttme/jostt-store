@@ -5,13 +5,13 @@ import { SvgHeart } from './icons/SvgHeart'
 import Image from './Image'
 import { CategoryButton } from './CategoryButton'
 
-export function Card({
-	title,
+function Card({
+	name,
 	price,
-	image,
-	category,
+	mainImage,
+	categoryName,
 	categoryId,
-	openProduct,
+	navigateToProduct,
 	toggledFavorites,
 	isFavorite,
 	addToCart
@@ -23,7 +23,7 @@ export function Card({
 
 	return (
 		<div
-			onClick={openProduct}
+			onClick={navigateToProduct}
 			className="max-w-sm cursor-pointer overflow-hidden rounded-lg bg-white shadow-xl transition duration-300 hover:shadow-4xl"
 		>
 			<figure className="relative w-full">
@@ -44,15 +44,15 @@ export function Card({
 						<div className=" absolute left-0 top-0 h-full w-full animate-pulse-fast bg-gray-300" />
 					)}
 					<Image
-						src={image}
-						title={title}
+						src={mainImage}
+						title={name}
 						isLoading={isLoading}
 						setIsLoading={setIsLoading}
 					/>
 				</div>
-				<CategoryButton category={category} categoryId={categoryId} />
+				<CategoryButton category={categoryName} categoryId={categoryId} />
 			</figure>
-			<h1 className="p-5 pb-1 text-xl">{title}</h1>
+			<h1 className="p-5 pb-1 text-xl">{name}</h1>
 			<div className="mb-3 flex w-full items-center justify-between  px-5">
 				<p className="text-3xl font-bold text-[#ff234e]">{`$${price}`}</p>
 				<div
@@ -68,14 +68,53 @@ export function Card({
 		</div>
 	)
 }
+function NoProductsResults() {
+	return (
+		<div className="flex h-full w-full items-center justify-center">
+			<p className="text-xl">No products found</p>
+		</div>
+	)
+}
+export function CardProduct({
+	products,
+	addToCart,
+	navigateToProduct,
+	toggledFavorites,
+	isFavorite
+}) {
+	const hasProducts = products?.length > 0
+	return hasProducts ? (
+		<section className="mx-auto grid max-w-5xl grid-cols-2 gap-4 pt-5 md:grid-cols-3">
+			{products?.map((product) => (
+				<Card
+					key={product.id}
+					{...product}
+					navigateToProduct={() => navigateToProduct(product.id)}
+					toggledFavorites={(e) => toggledFavorites(e, product)}
+					isFavorite={isFavorite(product)}
+					addToCart={(e) => addToCart(e, product)}
+				/>
+			))}
+		</section>
+	) : (
+		<NoProductsResults />
+	)
+}
+CardProduct.propTypes = {
+	products: PropTypes.array.isRequired,
+	addToCart: PropTypes.func.isRequired,
+	navigateToProduct: PropTypes.func.isRequired,
+	toggledFavorites: PropTypes.func.isRequired,
+	isFavorite: PropTypes.func.isRequired
+}
 
 Card.propTypes = {
-	title: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
 	price: PropTypes.number.isRequired,
-	image: PropTypes.string.isRequired,
-	category: PropTypes.string.isRequired,
-	categoryId: PropTypes.number.isRequired,
-	openProduct: PropTypes.func,
+	mainImage: PropTypes.string.isRequired,
+	categoryName: PropTypes.string.isRequired,
+	categoryId: PropTypes.string.isRequired,
+	navigateToProduct: PropTypes.func,
 	toggledFavorites: PropTypes.func,
 	isFavorite: PropTypes.bool,
 	addToCart: PropTypes.func

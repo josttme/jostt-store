@@ -1,92 +1,49 @@
-import { useContext, useEffect, useMemo, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { Card } from '../components/Card'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { CardProduct } from '../components/Card'
 import { ProductContext } from '../context'
 import { Search } from '../components/Search'
-import { useProductSearch } from '../hooks/useProductSearch'
 import { Pagination } from '../components/Pagination'
 import { useNavigation } from '../utils'
+import { useProductsSearch } from '../hooks/useProductsSearch'
+import { usePagination } from '../hooks/usePagination'
+import { useGetProducts } from '../hooks/useGetProducts'
 
 export function Home() {
 	const { addToCart, isFavorite, toggledFavorites } = useContext(ProductContext)
+	const { allProducts } = useGetProducts()
 
-	const {
-		productsSearch,
-		fetchProductSearch,
-		loadingSearch,
-		allProducts,
-		setSearch,
-		search,
-		errorMessage
-	} = useProductSearch()
+	const { productsSearch, getProducts } = useProductsSearch()
 
-	const [productsHome, setProductsHome] = useState([])
-	const [currentPage, setCurrentPage] = useState(1)
-	const [postsPerPage] = useState(9)
+	const { products, postsPerPage, setCurrentPage, currentPage } = usePagination(
+		{ allProducts, productsSearch }
+	)
 
 	const navigate = useNavigate()
+
 	const { navigateToProduct } = useNavigation(navigate)
-
-	useEffect(() => {
-		if (!allProducts?.length) return
-		setProductsHome(allProducts)
-	}, [allProducts])
-
-	// Ubicación actual
-	const location = useLocation()
-	const numeroPagina =
-		location.pathname === '/'
-			? 1
-			: Number(location.pathname.split('/page/')[1] || 1)
-	useEffect(() => {
-		// Actualiza la vista cuando cambie la ruta
-		setCurrentPage(numeroPagina)
-	}, [location])
-
-	const products = useMemo(() => {
-		const postsPerPage = 9
-		const lastPostIndex = numeroPagina * postsPerPage
-		const firstPostIndex = lastPostIndex - postsPerPage
-		const currentPosts = productsHome.slice(firstPostIndex, lastPostIndex)
-
-		let products
-
-		productsSearch?.length
-			? (products = productsSearch)
-			: (products = currentPosts)
-		return products
-	}, [productsHome, productsSearch, currentPage])
-
 	return (
-		<div className=" pb-10 pt-5">
+		<section className=" pb-10 pt-5">
 			<Search
-				search={search}
-				updateSearch={setSearch}
-				errorMessage={errorMessage}
-				getProducts={fetchProductSearch}
+				getProducts={getProducts}
+				productsSearch={productsSearch}
+				allProducts={allProducts}
 			/>
-			<section className="mx-auto grid max-w-5xl grid-cols-2 gap-4 pt-5 md:grid-cols-3">
-				{loadingSearch ? (
-					<span>Cargando...</span>
-				) : (
-					products?.map((product) => (
-						<Card
-							key={product.id}
-							{...product}
-							openProduct={() => navigateToProduct(product)}
-							toggledFavorites={(e) => toggledFavorites(e, product)}
-							isFavorite={isFavorite(product)}
-							addToCart={(e) => addToCart(e, product)}
-						/>
-					))
-				)}
-			</section>
+
+			<CardProduct
+				products={products}
+				addToCart={addToCart}
+				isFavorite={isFavorite}
+				toggledFavorites={toggledFavorites}
+				navigateToProduct={navigateToProduct}
+			/>
+
 			<Pagination
 				totalPosts={allProducts?.length}
 				postsPerPage={postsPerPage}
 				setCurrentPage={setCurrentPage}
 				currentPage={currentPage}
 			/>
-		</div>
+		</section>
 	)
 }

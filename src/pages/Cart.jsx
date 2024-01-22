@@ -18,7 +18,7 @@ export function Cart() {
 			<div className="mx-auto max-w-3xl px-4  pt-8  sm:px-6 sm:py-12 lg:px-8">
 				<section className="text-center">
 					<h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
-						{`Carrito(${quantityProducts})`}
+						{`Bag (${quantityProducts})`}
 					</h1>
 				</section>
 				<div className="felx mt-8 flex-col">
@@ -36,7 +36,7 @@ export function Cart() {
 							type="button"
 							className="text-md block rounded  bg-gray-700 px-5 py-3 text-gray-100 transition hover:bg-gray-600"
 						>
-							Continuar compra
+							Checkout
 						</button>
 					</div>
 				</div>
@@ -47,7 +47,7 @@ export function Cart() {
 
 export function CartProduct(product) {
 	const [isLoading, setIsLoading] = useState(false)
-	const { title, price, image, quantity } = product
+	const { name, price, mainImage, quantity } = product
 	const { removeFromCart, increaseQuantity, decreaseQuantity } =
 		useContext(ProductContext)
 
@@ -70,8 +70,8 @@ export function CartProduct(product) {
 					<div className=" absolute left-0 top-0 m-2 h-16 w-16 animate-pulse-fast rounded bg-gray-300" />
 				)}
 				<img
-					src={image}
-					alt={title}
+					src={mainImage}
+					alt={name}
 					width={100}
 					height={100}
 					className={`${
@@ -80,7 +80,7 @@ export function CartProduct(product) {
 					onLoad={() => setIsLoading(true)}
 				/>
 				<div className="grid place-content-center">
-					<h3 className="text-lg text-gray-900">{title}</h3>
+					<h3 className="text-lg text-gray-900">{name}</h3>
 					<span className="text-xl">{`$${price}`}</span>
 				</div>
 			</Link>
@@ -119,8 +119,8 @@ export function CartProduct(product) {
 	)
 }
 CartProduct.propTypes = {
-	title: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
 	price: PropTypes.number.isRequired,
-	image: PropTypes.string.isRequired,
+	mainImage: PropTypes.string.isRequired,
 	quantity: PropTypes.number.isRequired
 }

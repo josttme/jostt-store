@@ -1,7 +1,6 @@
 export function useNavigation(navigate) {
-	function navigateToProduct(product) {
-		navigate(`/product/${product.id}`)
+	const navigateToProduct = (id) => {
+		navigate(`/product/${id}`)
 	}
-
 	return { navigateToProduct }
 }
