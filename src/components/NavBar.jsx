@@ -10,7 +10,7 @@ export function NavBar() {
 	const activeClass = 'bg-gray-300 rounded-md p-1 px-2'
 	const classDefault = 'rounded-md p-1 px-2 duration-150 hover:bg-gray-300'
 	return (
-		<div className="fixed top-0 z-50 flex h-14 w-full justify-between bg-gray-100 ">
+		<div className="nav-bar sticky top-0 z-50 flex h-14 w-full justify-between bg-gray-100 ">
 			<div className="flex items-center gap-2 pl-6">
 				<NavLink to="/" className="text-lg font-bold">
 					JosttStore

@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-bar{
+  animation: enhance-header both;
+  animation-timeline: scroll(root);
+  animation-range: 0 200px;
+}
+
+@keyframes enhance-header {
+  to {
+    background: rgba(255,255,255,.4);
+    backdrop-filter: blur(20px);
+  }
+}

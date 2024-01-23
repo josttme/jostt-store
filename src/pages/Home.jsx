@@ -1,10 +1,10 @@
 import { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { CardProduct } from '../components/Card'
 import { ProductContext } from '../context'
 import { Search } from '../components/Search'
 import { Pagination } from '../components/Pagination'
-import { useNavigation } from '../utils'
+import { useNavigation, useResetScroll } from '../utils'
 import { useProductsSearch } from '../hooks/useProductsSearch'
 import { usePagination } from '../hooks/usePagination'
 import { useGetProducts } from '../hooks/useGetProducts'
@@ -20,10 +20,13 @@ export function Home() {
 	)
 
 	const navigate = useNavigate()
-
 	const { navigateToProduct } = useNavigation(navigate)
+
+	// Scroll al principio de la página cuando se cambia de ruta.
+	const { pathname } = useLocation()
+	useResetScroll([pathname])
 	return (
-		<section className=" pb-10 pt-5">
+		<section className=" grid min-h-[calc(100vh-3.5rem)] w-full grid-rows-[auto_1fr_auto] pb-10 ">
 			<Search
 				getProducts={getProducts}
 				productsSearch={productsSearch}

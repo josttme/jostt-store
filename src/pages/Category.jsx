@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useNavigation } from '../utils'
+import { useNavigation, useResetScroll } from '../utils'
 import { CardProduct } from '../components/Card'
 import { ProductContext } from '../context'
 import { getProductsByCategory } from '../services/products'
@@ -22,6 +22,8 @@ export function Category() {
 
 	const { navigateToProduct } = useNavigation(navigate)
 
+	// Scroll al principio de la página cuando se cambia de ruta.
+	useResetScroll([id])
 	return (
 		<CardProduct
 			products={products}

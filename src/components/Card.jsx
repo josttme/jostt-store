@@ -24,7 +24,7 @@ function Card({
 	return (
 		<div
 			onClick={navigateToProduct}
-			className="max-w-sm cursor-pointer overflow-hidden rounded-lg bg-white shadow-xl transition duration-300 hover:shadow-4xl"
+			className="grid aspect-[3/4] w-80 max-w-sm cursor-pointer gap-4 overflow-hidden  rounded-lg bg-white pb-4 shadow-xl transition duration-300 hover:shadow-4xl"
 		>
 			<figure className="relative w-full">
 				<div
@@ -52,8 +52,8 @@ function Card({
 				</div>
 				<CategoryButton category={categoryName} categoryId={categoryId} />
 			</figure>
-			<h1 className="p-5 pb-1 text-xl">{name}</h1>
-			<div className="mb-3 flex w-full items-center justify-between  px-5">
+			<h1 className="px-5  text-xl">{name}</h1>
+			<div className="flex w-full items-center justify-between  px-5">
 				<p className="text-3xl font-bold text-[#ff234e]">{`$${price}`}</p>
 				<div
 					onClick={addToCart}
@@ -84,18 +84,20 @@ export function CardProduct({
 }) {
 	const hasProducts = products?.length > 0
 	return hasProducts ? (
-		<section className="mx-auto grid max-w-5xl grid-cols-2 gap-4 pt-5 md:grid-cols-3">
-			{products?.map((product) => (
-				<Card
-					key={product.id}
-					{...product}
-					navigateToProduct={() => navigateToProduct(product.id)}
-					toggledFavorites={(e) => toggledFavorites(e, product)}
-					isFavorite={isFavorite(product)}
-					addToCart={(e) => addToCart(e, product)}
-				/>
-			))}
-		</section>
+		<div className="mx-auto w-full max-w-5xl px-4 pb-10">
+			<section className="mx-auto grid w-full grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center gap-4 pt-5 ">
+				{products?.map((product) => (
+					<Card
+						key={product.id}
+						{...product}
+						navigateToProduct={() => navigateToProduct(product.id)}
+						toggledFavorites={(e) => toggledFavorites(e, product)}
+						isFavorite={isFavorite(product)}
+						addToCart={(e) => addToCart(e, product)}
+					/>
+				))}
+			</section>
+		</div>
 	) : (
 		<NoProductsResults />
 	)
