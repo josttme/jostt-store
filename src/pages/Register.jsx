@@ -1,7 +1,7 @@
-import { UseAuth } from '../hooks/UseAuth'
+import { useAuth } from '../hooks/useAuth'
 
 export function Register() {
-	const { handleSubmit, messageError } = UseAuth()
+	const { handleRegisterSubmit, messageError } = useAuth()
 	return (
 		<main className="flex h-screen w-full flex-col items-center justify-center bg-gray-50 sm:px-4">
 			<div className="w-full space-y-6 text-gray-600 sm:max-w-md">
@@ -27,7 +27,7 @@ export function Register() {
 					</div>
 				</div>
 				<div className="bg-white p-4 py-6 shadow sm:rounded-lg sm:p-6">
-					<form onSubmit={handleSubmit} className="space-y-5">
+					<form onSubmit={handleRegisterSubmit} className="space-y-5">
 						<div>
 							<label className="font-medium">Username</label>
 							<input
