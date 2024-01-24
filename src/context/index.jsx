@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import { createContext, useEffect, useState } from 'react'
 import { useToggleFavotites } from '../hooks/useToggleFavotites'
 import { useCart } from '../hooks/useCart'
+import { useSessionStorage } from '../hooks/useSessionStorage'
+import useLocalStorage from '../hooks/useLocalStorage'
 
 export const ProductContext = createContext()
 
@@ -10,6 +12,9 @@ export function ProductProvider({ children }) {
 	const [productsLoaded, setProductsLoaded] = useState(false)
 	const [quantityProducts, setQuantityProducts] = useState(0)
 	const [favorites, toggledFavorites] = useToggleFavotites('store_favorites')
+
+	const [usersExisting, updateUsers] = useLocalStorage('users_store')
+	const [username, setUsername] = useSessionStorage('username')
 	const [
 		cartItems,
 		addToCart,
@@ -43,7 +48,11 @@ export function ProductProvider({ children }) {
 		allProducts,
 		productsLoaded,
 		setAllProducts,
-		setProductsLoaded
+		setProductsLoaded,
+		usersExisting,
+		updateUsers,
+		username,
+		setUsername
 	}
 
 	return (

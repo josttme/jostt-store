@@ -18,7 +18,7 @@ export function Register() {
 						<p className="">
 							Already have an account?{' '}
 							<a
-								href="javascript:void(0)"
+								href="#"
 								className="font-medium text-indigo-600 hover:text-indigo-500"
 							>
 								Log in

@@ -1,26 +1,30 @@
-import { useState } from 'react'
-import useLocalStorage from './useLocalStorage'
+import { useContext, useState } from 'react'
+import { ProductContext } from '../context'
 
 export function useAuth() {
-	const [usersExisting, updateUsers] = useLocalStorage('users_store')
+	const { usersExisting, updateUsers, setUsername } = useContext(ProductContext)
 	const [messageError, setMessageError] = useState('')
 
 	const handleRegisterSubmit = (e) => {
 		e.preventDefault()
 
-		setMessageError('')
-
 		const newUser = Object.fromEntries(new FormData(e.target))
 
 		const isUserExist = isExist('username', newUser, usersExisting)
-
 		const isEmailExist = isExist('email', newUser, usersExisting)
+
+		const registeredUser = () => {
+			setMessageError('')
+			updateUsers([...usersExisting, newUser])
+			setUsername(newUser.username)
+			e.target.reset()
+		}
 
 		isUserExist
 			? setMessageError('The user already exists')
 			: isEmailExist
 				? setMessageError('The email is already in use')
-				: updateUsers([...usersExisting, newUser])
+				: registeredUser()
 	}
 
 	return { handleRegisterSubmit, messageError }
