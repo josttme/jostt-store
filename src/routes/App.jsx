@@ -6,6 +6,8 @@ import { Category } from '../pages/Category'
 import { ProductProvider } from '../context'
 import { Favorites } from '../pages/Favorites'
 import { Cart } from '../pages/Cart'
+import { Login } from '../pages/Login'
+import { Register } from '../pages/Register'
 
 function App() {
 	return (
@@ -19,6 +21,8 @@ function App() {
 						<Route path="/category/:id" element={<Category />} />
 						<Route path="/favorites" element={<Favorites />} />
 						<Route path="/cart" element={<Cart />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
 					</Route>
 					<Route path="*" element={<h1>404</h1>} />
 				</Routes>
