@@ -12,3 +12,7 @@ export function useResetScroll(deps) {
 		window.scrollTo(0, 0)
 	}, deps)
 }
+
+export function getUserByUsername({ username, usersExisting }) {
+	return usersExisting.find((user) => user.username === username)
+}

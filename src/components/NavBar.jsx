@@ -5,8 +5,7 @@ import { SvgCart } from '../components/icons/SvgCart'
 import { SvgUser } from '../components/icons/SvgUser'
 
 export function NavBar() {
-	const { quantityProducts } = useContext(ProductContext)
-	const currentUser = true
+	const { username, quantityProducts } = useContext(ProductContext)
 	const activeClass = 'bg-gray-300 rounded-md p-1 px-2'
 	const classDefault = 'rounded-md p-1 px-2 duration-150 hover:bg-gray-300'
 	return (
@@ -53,20 +52,20 @@ export function NavBar() {
 				</NavLink>
 			</div>
 			<div className="flex items-center gap-3 pr-6">
-				<span className="opacity-70">JosttStore@platzistore.com</span>
+				<span className="opacity-70">josttme@josttstore.com</span>
 				<NavLink
 					to="/favorites"
 					className={({ isActive }) => (isActive ? activeClass : classDefault)}
 				>
 					Favorites
 				</NavLink>
-				{!currentUser ? (
+				{!username ? (
 					<>
-						<NavLink to="#" className={classDefault}>
+						<NavLink to="/login" className={classDefault}>
 							Log In
 						</NavLink>
 						<NavLink
-							to="#"
+							to="/register"
 							className={
 								'rounded-md bg-gray-900 p-1  px-2 text-slate-200 duration-150  hover:bg-gray-300 hover:text-slate-900 '
 							}
@@ -76,14 +75,13 @@ export function NavBar() {
 					</>
 				) : (
 					<NavLink
-						to="/user"
+						to="/account"
 						className={({ isActive }) =>
 							isActive
 								? `${activeClass}`
 								: 'grid place-content-center  rounded-md bg-gray-200 p-1 px-2   duration-150 hover:bg-gray-300  '
 						}
 					>
-						<span>{currentUser}</span>
 						<SvgUser className="h-6 w-6 stroke-current" />
 					</NavLink>
 				)}

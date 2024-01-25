@@ -8,6 +8,8 @@ import { Favorites } from '../pages/Favorites'
 import { Cart } from '../pages/Cart'
 import { Login } from '../pages/Login'
 import { Register } from '../pages/Register'
+import { Account } from '../pages/Account'
+import { PrivateRoutes, PublicOnlyRoute } from './PrivateRoutes'
 
 function App() {
 	return (
@@ -21,8 +23,13 @@ function App() {
 						<Route path="/category/:id" element={<Category />} />
 						<Route path="/favorites" element={<Favorites />} />
 						<Route path="/cart" element={<Cart />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/register" element={<Register />} />
+						<Route element={<PrivateRoutes />}>
+							<Route path="/account" element={<Account />} />
+						</Route>
+						<Route element={<PublicOnlyRoute />}>
+							<Route path="/login" element={<Login />} />
+							<Route path="/register" element={<Register />} />
+						</Route>
 					</Route>
 					<Route path="*" element={<h1>404</h1>} />
 				</Routes>
