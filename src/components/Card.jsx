@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { SvgCartPlus } from './icons/SvgCartPlus'
 import { SvgHeart } from './icons/SvgHeart'
@@ -17,14 +16,13 @@ function Card({
 	addToCart
 }) {
 	// Estado para controlar la carga de la imagen
-	const [isLoading, setIsLoading] = useState(false)
 
 	const favorite = isFavorite ? 'fill-[#ff234e] stroke-[#ff234e]' : 'fill-none'
 
 	return (
 		<div
 			onClick={navigateToProduct}
-			className="grid aspect-[3/4] w-80 max-w-sm cursor-pointer gap-4 overflow-hidden  rounded-lg bg-white pb-4 shadow-xl transition duration-300 hover:shadow-4xl"
+			className="z-10 grid aspect-[3/4] w-80 max-w-sm cursor-pointer gap-4 overflow-hidden  rounded-lg bg-white pb-4 shadow-card transition-opacity duration-200 hover:shadow-cardHover "
 		>
 			<figure className="relative w-full">
 				<div
@@ -40,15 +38,7 @@ function Card({
 					</button>
 				</div>
 				<div className="relative ">
-					{!isLoading && (
-						<div className=" absolute left-0 top-0 h-full w-full animate-pulse-fast bg-gray-300" />
-					)}
-					<Image
-						src={mainImage}
-						title={name}
-						isLoading={isLoading}
-						setIsLoading={setIsLoading}
-					/>
+					<Image src={mainImage} title={name} />
 				</div>
 				<CategoryButton category={categoryName} categoryId={categoryId} />
 			</figure>
@@ -57,22 +47,32 @@ function Card({
 				<p className="text-3xl font-bold text-[#ff234e]">{`$${price}`}</p>
 				<div
 					onClick={addToCart}
-					className="relative flex  items-center rounded-md  bg-gradient-to-r from-[#fcdde3] via-[#ff6174] via-30%  to-[#ff234e]  before:absolute  before:h-full before:w-full before:rounded-md   hover:before:bg-black/10"
+					className="relative flex   items-center rounded-md  bg-gradient-to-r from-[#fcdde3] via-[#ff6174] via-30%  to-[#ff234e]  before:absolute  before:h-full before:w-full before:rounded-md   hover:before:bg-black/10"
 				>
 					<div className="w-10 rounded-l-md bg-[#fcdde3] p-1  ">
 						<SvgCartPlus className="fill-[#ff4359] stroke-[#ff4359]" />
 					</div>
-					<span className="px-2 text-center text-white">Add to cart</span>
+					<span className=" px-2 text-center text-white">Add to cart</span>
 				</div>
 			</div>
 		</div>
 	)
 }
-function NoProductsResults() {
+function ProductSkeleton() {
 	return (
-		<div className="flex h-full w-full items-center justify-center">
-			<p className="text-xl">No products found</p>
-		</div>
+		<>
+			{[1, 2, 3, 4, 5, 6].map((item) => (
+				<div
+					key={item}
+					className="z-20 grid w-80 grid-cols-2 gap-4 overflow-hidden rounded-lg bg-white shadow-cardSkeleton"
+				>
+					<div className="cardSkeleton col-span-2 aspect-[1/1] w-full bg-[#dcdcdc] "></div>
+					<p className="cardSkeleton col-span-2 mx-5 h-8 rounded-lg bg-[#dcdcdc]"></p>
+					<p className="cardSkeleton ml-5 h-8 w-20 rounded-lg bg-[#dcdcdc] "></p>
+					<p className="cardSkeleton mb-3 mr-5 h-8 rounded-lg bg-[#dcdcdc] "></p>
+				</div>
+			))}
+		</>
 	)
 }
 export function CardProduct({
@@ -82,24 +82,27 @@ export function CardProduct({
 	toggledFavorites,
 	isFavorite
 }) {
-	const hasProducts = products?.length > 0
-	return hasProducts ? (
-		<div className="mx-auto w-full max-w-5xl px-4 pb-10">
-			<section className="mx-auto grid w-full grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center gap-4 pt-5 ">
-				{products?.map((product) => (
-					<Card
-						key={product.id}
-						{...product}
-						navigateToProduct={() => navigateToProduct(product.id)}
-						toggledFavorites={(e) => toggledFavorites(e, product)}
-						isFavorite={isFavorite(product)}
-						addToCart={(e) => addToCart(e, product)}
-					/>
-				))}
-			</section>
-		</div>
-	) : (
-		<NoProductsResults />
+	return (
+		<>
+			<div className="mx-auto w-full max-w-5xl px-4 pb-10">
+				<section className="mx-auto grid w-full grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-items-center gap-4 pt-5 ">
+					{products?.length !== 0 ? (
+						products?.map((product) => (
+							<Card
+								key={product.id}
+								{...product}
+								navigateToProduct={() => navigateToProduct(product.id)}
+								toggledFavorites={(e) => toggledFavorites(e, product)}
+								isFavorite={isFavorite(product)}
+								addToCart={(e) => addToCart(e, product)}
+							/>
+						))
+					) : (
+						<ProductSkeleton />
+					)}
+				</section>
+			</div>
+		</>
 	)
 }
 CardProduct.propTypes = {

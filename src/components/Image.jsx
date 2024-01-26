@@ -1,17 +1,22 @@
+import { memo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { memo } from 'react'
 
-const Image = ({ src, title, isLoading, setIsLoading }) => {
+const Image = ({ src, title }) => {
+	const [loaded, setLoaded] = useState(false)
+
 	return (
 		<div className="relative">
 			<img
-				className={`${!isLoading && 'opacity-0'} h-full w-full`}
+				className="h-full w-full"
 				src={src}
 				alt={title}
-				onLoad={() => setIsLoading(true)}
 				width="200"
 				height="200"
+				onLoad={() => setLoaded(true)}
 			/>
+			{!loaded && (
+				<div className="cardSkeleton absolute inset-0 bg-[#dcdcdc] "></div>
+			)}
 		</div>
 	)
 }
@@ -20,7 +25,5 @@ export default memo(Image)
 
 Image.propTypes = {
 	src: PropTypes.string.isRequired,
-	title: PropTypes.string.isRequired,
-	isLoading: PropTypes.bool.isRequired,
-	setIsLoading: PropTypes.func.isRequired
+	title: PropTypes.string.isRequired
 }
