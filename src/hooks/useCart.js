@@ -49,6 +49,7 @@ export const useCart = (key) => {
 		addToCart,
 		removeFromCart,
 		increaseQuantity,
-		decreaseQuantity
+		decreaseQuantity,
+		setCartItems
 	]
 }

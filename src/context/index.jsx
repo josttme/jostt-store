@@ -11,17 +11,21 @@ export function ProductProvider({ children }) {
 	const [allProducts, setAllProducts] = useState([])
 	const [productsLoaded, setProductsLoaded] = useState(false)
 	const [quantityProducts, setQuantityProducts] = useState(0)
-	const [favorites, toggledFavorites] = useToggleFavotites('store_favorites')
+	const [favorites, toggledFavorites, setProducts] =
+		useToggleFavotites('store_favorites')
 
 	const [usersExisting, updateUsers] = useLocalStorage('users_store')
 	const [username, setUsername] = useSessionStorage('username')
+	const [errorCheckout, setErrorCheckout] = useState('')
 	const [
 		cartItems,
 		addToCart,
 		removeFromCart,
 		increaseQuantity,
-		decreaseQuantity
+		decreaseQuantity,
+		setCartItems
 	] = useCart('store_cart')
+
 	const isFavorite = (product) => {
 		return favorites.some((item) => item.id === product.id)
 	}
@@ -44,6 +48,7 @@ export function ProductProvider({ children }) {
 		removeFromCart,
 		increaseQuantity,
 		decreaseQuantity,
+		setCartItems,
 		quantityProducts,
 		allProducts,
 		productsLoaded,
@@ -52,7 +57,10 @@ export function ProductProvider({ children }) {
 		usersExisting,
 		updateUsers,
 		username,
-		setUsername
+		setUsername,
+		errorCheckout,
+		setErrorCheckout,
+		setProducts
 	}
 
 	return (

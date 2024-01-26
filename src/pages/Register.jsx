@@ -37,6 +37,7 @@ export function Register() {
 								required
 								pattern="[A-Za-z0-9]*"
 								title="Solo letras y números están permitidos"
+								autoComplete="username"
 								className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
 							/>
 						</div>
@@ -46,6 +47,7 @@ export function Register() {
 								name="email"
 								type="email"
 								required
+								autoComplete="email"
 								className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
 							/>
 						</div>
@@ -55,6 +57,7 @@ export function Register() {
 								name="password"
 								type="password"
 								required
+								autoComplete="current-password"
 								className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
 							/>
 						</div>

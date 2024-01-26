@@ -17,5 +17,5 @@ export function useToggleFavotites(key) {
 		}
 	}
 
-	return [products, toggledFavorites]
+	return [products, toggledFavorites, setProducts]
 }

@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react'
 import { ProductContext } from '../context'
-
+import { useUpdateCurrenUser } from './useUpdateCurrenUser'
 export function useAuth() {
 	const { usersExisting, updateUsers, setUsername } = useContext(ProductContext)
 	const [messageError, setMessageError] = useState('')
+	const { getFavoritesAndCartsOnCurrentUser } = useUpdateCurrenUser()
 
 	/********************************
 	 ****** Register
@@ -16,12 +17,13 @@ export function useAuth() {
 
 		const isUserExist = isExist('username', newUser, usersExisting)
 		const isEmailExist = isExist('email', newUser, usersExisting)
-
+		const newUpdateUsers = [...usersExisting, newUser]
 		const registeredUser = () => {
 			setMessageError('')
-			updateUsers([...usersExisting, newUser])
+			updateUsers(newUpdateUsers)
 			setUsername(newUser.username)
 			e.target.reset()
+			getFavoritesAndCartsOnCurrentUser(newUser.username, newUpdateUsers)
 		}
 
 		isUserExist
@@ -46,6 +48,7 @@ export function useAuth() {
 			setMessageError('')
 			setUsername(newUser.username)
 			e.target.reset()
+			getFavoritesAndCartsOnCurrentUser(newUser.username)
 		}
 		isUserCorrect && isPasswordCorrect
 			? loggedUser()

@@ -3,9 +3,12 @@ import { useContext, useEffect, useState } from 'react'
 import { ProductContext } from '../context'
 import { Link } from 'react-router-dom'
 import { SvgRemove } from '../components/icons/SvgRemove'
+import { useCheckout } from '../hooks/useCheckout'
 
 export function Cart() {
 	const { cartItems, quantityProducts } = useContext(ProductContext)
+	const { handeCheckout } = useCheckout()
+
 	const calculateCartTotalPrice = (cartItems) => {
 		return cartItems.reduce((totalPrice, item) => {
 			return totalPrice + item.price * item.quantity
@@ -34,6 +37,7 @@ export function Cart() {
 					<div className="self-end text-center ">
 						<button
 							type="button"
+							onClick={handeCheckout}
 							className="text-md block rounded  bg-gray-700 px-5 py-3 text-gray-100 transition hover:bg-gray-600"
 						>
 							Checkout
