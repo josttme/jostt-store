@@ -11,7 +11,6 @@ export function Login() {
 	useEffect(() => {
 		return () => {
 			if (location.pathname === '/login') {
-				console.log('Saliendo de /login')
 				setErrorCheckout('')
 			}
 		}

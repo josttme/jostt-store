@@ -2,9 +2,22 @@ import { useContext, useState } from 'react'
 import { ProductContext } from '../context'
 import { useUpdateCurrenUser } from './useUpdateCurrenUser'
 export function useAuth() {
-	const { usersExisting, updateUsers, setUsername } = useContext(ProductContext)
+	const {
+		usersExisting,
+		updateUsers,
+		setUsername,
+		setProducts,
+		setCartItems,
+		cartItems,
+		favorites
+	} = useContext(ProductContext)
 	const [messageError, setMessageError] = useState('')
-	const { getFavoritesAndCartsOnCurrentUser } = useUpdateCurrenUser()
+	const { getFavoritesAndCartsOnCurrentUser } = useUpdateCurrenUser({
+		usersExisting,
+		updateUsers,
+		setProducts,
+		setCartItems
+	})
 
 	/********************************
 	 ****** Register
@@ -23,7 +36,13 @@ export function useAuth() {
 			updateUsers(newUpdateUsers)
 			setUsername(newUser.username)
 			e.target.reset()
-			getFavoritesAndCartsOnCurrentUser(newUser.username, newUpdateUsers)
+			getFavoritesAndCartsOnCurrentUser(
+				newUser.username,
+				newUpdateUsers,
+				cartItems,
+				null,
+				favorites
+			)
 		}
 
 		isUserExist
@@ -48,7 +67,13 @@ export function useAuth() {
 			setMessageError('')
 			setUsername(newUser.username)
 			e.target.reset()
-			getFavoritesAndCartsOnCurrentUser(newUser.username)
+			getFavoritesAndCartsOnCurrentUser(
+				newUser.username,
+				null,
+				cartItems,
+				null,
+				favorites
+			)
 		}
 		isUserCorrect && isPasswordCorrect
 			? loggedUser()

@@ -17,7 +17,7 @@ export function useCheckout() {
 	return { handeCheckout }
 }
 
-const currentUser = 'juan'
+/* const currentUser = 'juan'
 const users = [
 	{ name: 'juan', lastName: 'elias', age: '22' },
 	{ name: 'name2', lastName: 'lastname2', age: '23' },
@@ -27,3 +27,4 @@ const getUser = users.find((user) => user.name === currentUser)
 getUser.city = 'New York'
 getUser.childrens = '2'
 console.log(getUser)
+ */
