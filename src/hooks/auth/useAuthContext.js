@@ -1,7 +1,8 @@
 import { useContext, useState } from 'react'
 import { ProductContext } from '../../context'
-import { useUpdateCurrenUser } from '../useUpdateCurrenUser'
 import { useAuthUtils } from './useAuthUtils'
+import { useUpdateUserFavorites } from '../user/useUpdateUserFavorites'
+import { useUpdateUserCart } from '../user/useUpdateUserCart'
 
 export function useAuthContext() {
 	const [messageError, setMessageError] = useState('')
@@ -18,10 +19,14 @@ export function useAuthContext() {
 
 	const { isExist } = useAuthUtils()
 
-	const { getFavoritesAndCartsOnCurrentUser } = useUpdateCurrenUser({
+	const { favoritesOnCurrentUser } = useUpdateUserFavorites({
 		usersExisting,
 		updateUsers,
-		setProducts,
+		setProducts
+	})
+	const { cartsOnCurrentUser } = useUpdateUserCart({
+		usersExisting,
+		updateUsers,
 		setCartItems
 	})
 
@@ -34,6 +39,7 @@ export function useAuthContext() {
 		messageError,
 		setUsername,
 		setMessageError,
-		getFavoritesAndCartsOnCurrentUser
+		favoritesOnCurrentUser,
+		cartsOnCurrentUser
 	}
 }

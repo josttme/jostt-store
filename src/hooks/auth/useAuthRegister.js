@@ -10,7 +10,8 @@ export function useAuthRegister() {
 		setUsername,
 		setMessageError,
 		messageError,
-		getFavoritesAndCartsOnCurrentUser
+		favoritesOnCurrentUser,
+		cartsOnCurrentUser
 	} = useAuthContext()
 
 	const handleRegisterSubmit = (e) => {
@@ -22,17 +23,13 @@ export function useAuthRegister() {
 		const newUpdateUsers = [...usersExisting, newUser]
 
 		const registeredUser = () => {
+			const username = newUser.username
 			setMessageError('')
 			updateUsers(newUpdateUsers)
-			setUsername(newUser.username)
+			setUsername(username)
 			e.target.reset()
-			getFavoritesAndCartsOnCurrentUser(
-				newUser.username,
-				newUpdateUsers,
-				cartItems,
-				null,
-				favorites
-			)
+			favoritesOnCurrentUser({ username, newUpdateUsers, favorites })
+			cartsOnCurrentUser({ username, newUpdateUsers, cartItems })
 		}
 
 		isUserExist

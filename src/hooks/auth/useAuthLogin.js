@@ -9,7 +9,8 @@ export function useAuthLogin() {
 		setUsername,
 		setMessageError,
 		messageError,
-		getFavoritesAndCartsOnCurrentUser
+		favoritesOnCurrentUser,
+		cartsOnCurrentUser
 	} = useAuthContext()
 
 	const handleLoginSubmit = (e) => {
@@ -20,16 +21,12 @@ export function useAuthLogin() {
 		const isPasswordCorrect = isExist('password', newUser, usersExisting)
 
 		const loggedUser = () => {
+			const username = newUser.username
 			setMessageError('')
-			setUsername(newUser.username)
+			setUsername(username)
 			e.target.reset()
-			getFavoritesAndCartsOnCurrentUser(
-				newUser.username,
-				null,
-				cartItems,
-				null,
-				favorites
-			)
+			favoritesOnCurrentUser({ username, favorites })
+			cartsOnCurrentUser({ username, cartItems })
 		}
 		isUserCorrect && isPasswordCorrect
 			? loggedUser()

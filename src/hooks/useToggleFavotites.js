@@ -1,5 +1,5 @@
 import useLocalStorage from './useLocalStorage'
-import { useUpdateCurrenUser } from './useUpdateCurrenUser'
+import { useUpdateUserFavorites } from './user/useUpdateUserFavorites'
 
 export function useToggleFavotites(key, usersExisting, username, updateUsers) {
 	let FavoriteItemsCurrentUser
@@ -9,47 +9,31 @@ export function useToggleFavotites(key, usersExisting, username, updateUsers) {
 		)?.favorites
 	}
 	const [products, setProducts] = useLocalStorage(key)
-	const newFavoriteItems = FavoriteItemsCurrentUser || products
-	const { getFavoritesAndCartsOnCurrentUser } = useUpdateCurrenUser({
+	const favorites = FavoriteItemsCurrentUser || products
+	const { favoritesOnCurrentUser } = useUpdateUserFavorites({
 		usersExisting,
 		updateUsers,
 		setProducts
 	})
 	const toggledFavorites = (e, product) => {
 		e.stopPropagation()
-		const isProductInList = newFavoriteItems.some(
-			(item) => item.id === product.id
-		)
+		const isProductInList = favorites.some((item) => item.id === product.id)
 
 		if (isProductInList) {
 			// si ya existe, se eliminará de la lista
-			const updatedProducts = newFavoriteItems.filter(
-				(item) => item.id !== product.id
-			)
-			if (username) {
-				getFavoritesAndCartsOnCurrentUser(
-					username,
-					null,
-					null,
-					null,
-					null,
-					updatedProducts
-				)
-			} else {
-				setProducts(updatedProducts)
-			}
+			const removeFavorite = favorites.filter((item) => item.id !== product.id)
+			username
+				? favoritesOnCurrentUser({ username, removeFavorite })
+				: setProducts(removeFavorite)
 		} else {
 			// si no existe, se agregará a la lista
-			if (username) {
-				getFavoritesAndCartsOnCurrentUser(username, null, null, null, [
-					...newFavoriteItems,
-					product
-				])
-			} else {
-				setProducts([...newFavoriteItems, product])
-			}
+			const newFavorite = [...favorites, product]
+
+			username
+				? favoritesOnCurrentUser({ username, newFavorite })
+				: setProducts(newFavorite)
 		}
 	}
 
-	return [newFavoriteItems, toggledFavorites, setProducts]
+	return [favorites, toggledFavorites, setProducts]
 }

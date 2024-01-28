@@ -1,5 +1,5 @@
 import useLocalStorage from './useLocalStorage'
-import { useUpdateCurrenUser } from './useUpdateCurrenUser'
+import { useUpdateUserCart } from './user/useUpdateUserCart'
 
 export const useCart = (key, usersExisting, username, updateUsers) => {
 	let cartItemsCurrentUSer
@@ -10,32 +10,30 @@ export const useCart = (key, usersExisting, username, updateUsers) => {
 	}
 	const [cartItems, setCartItems] = useLocalStorage(key)
 	const newCatItems = cartItemsCurrentUSer || cartItems
-	const { getFavoritesAndCartsOnCurrentUser } = useUpdateCurrenUser({
+
+	const { cartsOnCurrentUser } = useUpdateUserCart({
 		usersExisting,
 		updateUsers,
 		setCartItems
 	})
+
 	const addToCart = (e, product) => {
 		e.stopPropagation()
 		const existingItem = newCatItems.find((item) => item.id === product.id)
 		if (existingItem) {
-			const updatedCartItems = newCatItems.map((item) => {
+			const newCart = newCatItems.map((item) => {
 				if (item.id === product.id) {
 					return { ...item, quantity: item.quantity + 1 }
 				}
 				return item
 			})
-			if (username) {
-				getFavoritesAndCartsOnCurrentUser(username, null, updatedCartItems)
-			} else {
-				setCartItems(updatedCartItems)
-			}
+			username
+				? cartsOnCurrentUser({ username, newCart })
+				: setCartItems(newCart)
 		} else {
 			if (username) {
-				getFavoritesAndCartsOnCurrentUser(username, null, [
-					...newCatItems,
-					{ ...product, quantity: 1 }
-				])
+				const newCart = [...newCatItems, { ...product, quantity: 1 }]
+				cartsOnCurrentUser({ username, newCart })
 			} else {
 				setCartItems([...newCatItems, { ...product, quantity: 1 }])
 			}
@@ -43,42 +41,30 @@ export const useCart = (key, usersExisting, username, updateUsers) => {
 	}
 
 	const removeFromCart = (product) => {
-		const updatedCartItems = newCatItems.filter(
-			(item) => item.id !== product.id
-		)
-		if (username) {
-			getFavoritesAndCartsOnCurrentUser(username, null, null, updatedCartItems)
-		} else {
-			setCartItems(updatedCartItems)
-		}
+		const removeCart = newCatItems.filter((item) => item.id !== product.id)
+		username
+			? cartsOnCurrentUser({ username, removeCart })
+			: setCartItems(removeCart)
 	}
 
 	const increaseQuantity = (product) => {
-		const updatedCartItems = newCatItems.map((item) => {
+		const newCart = newCatItems.map((item) => {
 			if (item.id === product.id) {
 				return { ...item, quantity: item.quantity + 1 }
 			}
 			return item
 		})
-		if (username) {
-			getFavoritesAndCartsOnCurrentUser(username, null, updatedCartItems)
-		} else {
-			setCartItems(updatedCartItems)
-		}
+		username ? cartsOnCurrentUser({ username, newCart }) : setCartItems(newCart)
 	}
 
 	const decreaseQuantity = (product) => {
-		const updatedCartItems = newCatItems.map((item) => {
+		const newCart = newCatItems.map((item) => {
 			if (item.id === product.id && item.quantity > 1) {
 				return { ...item, quantity: item.quantity - 1 }
 			}
 			return item
 		})
-		if (username) {
-			getFavoritesAndCartsOnCurrentUser(username, null, updatedCartItems)
-		} else {
-			setCartItems(updatedCartItems)
-		}
+		username ? cartsOnCurrentUser({ username, newCart }) : setCartItems(newCart)
 	}
 
 	return [

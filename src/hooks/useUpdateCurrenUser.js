@@ -34,35 +34,35 @@ export function useUpdateCurrenUser({
 			: (getUser = newUpdateUsers.find((user) => user.username === username)) */
 
 		const user = allUsers[indexUser]
-		if (newFavoriteItemsCurrentUser === undefined) {
-			let updatedItems
-			const existingItemsMap = new Map(
-				allUsers[indexUser]?.cartItems?.map((item) => {
-					return [item.id, item]
-				})
-			)
-			/* 		if (newCatItems?.legth === 0) {
+		/* 		if (newFavoriteItemsCurrentUser === undefined) { */
+		let updatedItems
+		const existingItemsMap = new Map(
+			allUsers[indexUser]?.cartItems?.map((item) => {
+				return [item.id, item]
+			})
+		)
+		/* 		if (newCatItems?.legth === 0) {
 			newCatItems?.forEach((newItem) => {
 				existingItemsMap.set(newItem.id, newItem)
 				updatedItems = Array.from(existingItemsMap.values())
 			})
 		} else { */
-			/* if (newCatItemsCurrentUser) {
+		/* if (newCatItemsCurrentUser) {
 				console.log(newCatItemsCurrentUser)
 			} else {
 			} */
 
-			if (!removeItems) {
-				newCatItemsCurrentUser.forEach((newItem) => {
-					existingItemsMap.set(newItem.id, newItem)
-				})
-				updatedItems = Array.from(existingItemsMap.values())
-			} else {
-				updatedItems = removeItems
-			}
-			/* 	} */
+		if (!removeItems) {
+			newCatItemsCurrentUser.forEach((newItem) => {
+				existingItemsMap.set(newItem.id, newItem)
+			})
+			updatedItems = Array.from(existingItemsMap.values())
+		} else {
+			updatedItems = removeItems
+		}
+		/* 	} */
 
-			/* 		const updateUser = {
+		/* 		const updateUser = {
 			...getUser,
 			cartItems: [...newCatItems],
 			favorites: [...favorites]
@@ -72,20 +72,20 @@ export function useUpdateCurrenUser({
 		console.log(allUsers[indexUser]?.cartItems)
 		console.log(newCatItems) */
 
-			if (!user?.cartItems) {
-				user.cartItems = []
-			}
-			user.cartItems = [...updatedItems]
-			updateUsers(allUsers)
-			setCartItems([])
+		if (!user?.cartItems) {
+			user.cartItems = []
+		}
+		user.cartItems = [...updatedItems]
+		updateUsers(allUsers)
+		setCartItems([])
 
-			/*
+		/*
 		allUsers.splice(indexUser, 1, updateUser)
 		updateUsers(allUsers) */
-		} else {
-			/********************************
+		/* }  */ /* else {
+			*******************************
 			 ****** Update Favorites
-			 ********************************/
+			 *******************************
 			console.log(newFavoriteItemsCurrentUser)
 			let updatedFavorites
 			const existingItemsFavoritesMap = new Map(
@@ -107,10 +107,9 @@ export function useUpdateCurrenUser({
 				user.favorites = []
 			}
 			user.favorites = [...updatedFavorites]
-			/* 		} */
 			updateUsers(allUsers)
 			setProducts([])
-		}
+		} */
 	}
 	return { getFavoritesAndCartsOnCurrentUser }
 }
