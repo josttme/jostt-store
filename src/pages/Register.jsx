@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import { useAuthRegister } from '../hooks/auth'
 
 export function Register() {
-	const { handleRegisterSubmit, messageError } = useAuth()
+	const { handleRegisterSubmit, messageError } = useAuthRegister()
 	return (
 		<main className="flex h-screen w-full flex-col items-center justify-center bg-gray-50 sm:px-4">
 			<div className="w-full space-y-6 text-gray-600 sm:max-w-md">

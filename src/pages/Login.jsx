@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
 import { useContext, useEffect } from 'react'
+import { useAuthLogin } from '../hooks/auth'
 import { ProductContext } from '../context'
 
 export function Login() {
-	const { handleLoginSubmit, messageError } = useAuth()
+	const { handleLoginSubmit, messageError } = useAuthLogin()
 	const { errorCheckout, setErrorCheckout } = useContext(ProductContext)
 	const location = useLocation()
 
