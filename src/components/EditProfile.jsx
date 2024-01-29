@@ -18,7 +18,7 @@ export function EditProfile({ setEditUserData }) {
 						X
 					</button>
 				</div>
-				<h3 className="sm:text-1xl text-center text-2xl font-bold text-gray-800">
+				<h3 className="sm:text-1xl  text-center text-2xl font-bold text-gray-800">
 					Edit Your Profile
 				</h3>
 				<div>

@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import { ProductContext } from '../context'
 import { getUserByUsername } from '../utils'
 import { EditProfile } from '../components/EditProfile'
+import { RemoveUserModal } from '../components/RemoveUserModal'
 
 export function Account() {
 	const [editUserData, setEditUserData] = useState(false)
+	const [closeModal, setCloseModal] = useState(false)
 	const { username, usersExisting, setUsername } = useContext(ProductContext)
 	const { email } = getUserByUsername({ username, usersExisting })
 
@@ -25,24 +27,34 @@ export function Account() {
 				<p className="text-gray-500">{email}</p>
 			</div>
 
-			<div className="mt-10 text-center">
+			<div className="mt-5 grid w-full place-content-center  items-center gap-5 text-center">
 				<button
 					type="button"
 					onClick={() => setEditUserData(true)}
-					className="rounded-full bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+					className=" w-36 rounded-full bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
 				>
 					Edit Profile
 				</button>
+				<Link
+					to="/login"
+					onClick={() => setUsername('')}
+					className=" w-36 rounded-full bg-blue-500 px-4 py-2 text-center text-white hover:bg-blue-600"
+				>
+					Log Out
+				</Link>
+				<button
+					type="button"
+					onClick={() => setCloseModal(true)}
+					className=" w-36 rounded-full bg-[#dc2626] px-4 py-2 text-white hover:bg-[#d50000]"
+				>
+					Delete account
+				</button>
 			</div>
 
-			<Link
-				to="/login"
-				onClick={() => setUsername('')}
-				className="mt-5 text-center text-gray-400"
-			>
-				Log Out
-			</Link>
 			{editUserData && <EditProfile setEditUserData={setEditUserData} />}
+			{closeModal && (
+				<RemoveUserModal setCloseModal={setCloseModal} username={username} />
+			)}
 		</div>
 	)
 }
