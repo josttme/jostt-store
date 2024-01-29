@@ -39,7 +39,7 @@ export function Search({ getProducts, productsSearch, allProducts }) {
 				</span>
 			</form>
 			<div className={`h-6 w-full transition-all `}>
-				<p className="text-center text-red-500">{errorMessage}</p>
+				<p className="text-red-6  text-center">{errorMessage}</p>
 			</div>
 		</div>
 	)

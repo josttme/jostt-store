@@ -18,9 +18,9 @@ export function CategoryButton({ category, categoryId, productPage }) {
 			}}
 			className={`${
 				productPage
-					? 'text-md w-24 bg-black/15'
-					: 'absolute bottom-0 left-0 bg-white/80 text-sm'
-			}  m-2 rounded-lg  px-3 py-0.5 text-black transition-all duration-200 hover:bg-black/60 hover:text-white`}
+					? 'text-md w-24 self-start bg-slate-200'
+					: 'absolute bottom-0 left-0 m-2 border border-black/10  bg-slate-100/80  text-sm'
+			}  rounded-lg  px-3 py-0.5 text-black transition-all duration-200 hover:bg-black/60 hover:text-white`}
 		>
 			{category}
 		</button>

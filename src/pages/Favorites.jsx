@@ -13,13 +13,14 @@ export function Favorites() {
 	const { navigateToProduct } = useNavigation(navigate)
 
 	return (
-		<div className="flex-grow ">
+		<div className="flex-grow">
 			<CardProduct
 				products={favorites}
 				addToCart={addToCart}
 				isFavorite={isFavorite}
 				toggledFavorites={toggledFavorites}
 				navigateToProduct={navigateToProduct}
+				favorites
 			/>
 		</div>
 	)

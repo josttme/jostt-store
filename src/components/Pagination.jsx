@@ -30,10 +30,9 @@ export const Pagination = ({
 					<button
 						onClick={() => pagess(page)}
 						key={index}
-						// onClick={() => setCurrentPage(page)}
-						className={
-							'grid h-10 w-10 place-content-center rounded-md border border-gray-400 p-1 px-2 text-lg   duration-150 hover:bg-gray-300'
-						}
+						className={`${
+							page === currentPage && 'bg-gray-7 '
+						} border-gray-7 hover:bg-gray-1 grid h-10 w-10 place-content-center rounded-md border p-1 px-2   text-lg duration-150`}
 					>
 						{page}
 					</button>

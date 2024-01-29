@@ -14,9 +14,7 @@ const Image = ({ src, title }) => {
 				height="200"
 				onLoad={() => setLoaded(true)}
 			/>
-			{!loaded && (
-				<div className="cardSkeleton absolute inset-0 bg-[#dcdcdc] "></div>
-			)}
+			{!loaded && <div className="cardSkeleton absolute inset-0 "></div>}
 		</div>
 	)
 }

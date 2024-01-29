@@ -6,8 +6,8 @@ import { SvgUser } from '../components/icons/SvgUser'
 
 export function NavBar() {
 	const { username, quantityProducts } = useContext(ProductContext)
-	const activeClass = 'bg-gray-300 rounded-md p-1 px-2'
-	const classDefault = 'rounded-md p-1 px-2 duration-150 hover:bg-gray-300'
+	const activeClass = 'bg-gray-1 rounded-md p-1 px-2'
+	const classDefault = 'rounded-md p-1 px-2 duration-150 hover:bg-gray-1'
 	return (
 		<div className="nav-bar sticky top-0 z-50 flex h-14 w-full justify-between bg-gray-100 ">
 			<div className="flex items-center gap-2 pl-6">
@@ -67,7 +67,7 @@ export function NavBar() {
 						<NavLink
 							to="/register"
 							className={
-								'rounded-md bg-gray-900 p-1  px-2 text-slate-200 duration-150  hover:bg-gray-300 hover:text-slate-900 '
+								'from-red-4 to-red-6  rounded-md bg-black p-1  px-2 text-white duration-150 hover:bg-gradient-to-r  '
 							}
 						>
 							Sign Up
@@ -79,19 +79,19 @@ export function NavBar() {
 						className={({ isActive }) =>
 							isActive
 								? `${activeClass}`
-								: 'grid place-content-center  rounded-md bg-gray-200 p-1 px-2   duration-150 hover:bg-gray-300  '
+								: 'bg-gray-1 group  grid place-content-center rounded-md p-1   px-2 duration-150 hover:bg-gray-300'
 						}
 					>
-						<SvgUser className="h-6 w-6 stroke-current" />
+						<SvgUser className="h-6 w-6 stroke-current " />
 					</NavLink>
 				)}
 				<Link
 					to="/cart"
-					className="rounded-md  bg-[#fcdde3] p-1 px-2 outline-8 outline-red-600 duration-200 hover:bg-gray-300"
+					className="bg-red-1 hover:bg-red-5  outline-red-6 group rounded-md p-1 px-2 outline-8 duration-200"
 				>
 					<div className="relative flex  ">
-						<SvgCart className="h-6 w-6 fill-[#ff4359] stroke-[#ff4359]" />
-						<span className="absolute bottom-3 left-4 grid h-5 w-5  place-content-center rounded-full  bg-[#ff4359] text-xs font-bold text-white">
+						<SvgCart className="group-hover:stroke-red-1 fill-red-5 stroke-red-5 h-6  w-6" />
+						<span className="bg-red-5 absolute bottom-3 left-4 grid h-5  w-5 place-content-center   rounded-full text-xs font-bold text-white">
 							{quantityProducts}
 						</span>
 					</div>

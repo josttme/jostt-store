@@ -3,6 +3,17 @@ export default {
 	content: ['./index.html', './src/**/*.{js,jsx}'],
 	theme: {
 		extend: {
+			colors: {
+				'gray-1': '#dee2e7',
+				'gray-7': '#bfc8d1',
+				'red-1': '#fcdde3',
+				'red-4': '#ff6983',
+				'red-5': '#ff4359',
+				'red-6': '#ff234e',
+				'red-7': '#ed1135',
+				'red-8': '#c8082d',
+				'red-9': '#c8083c'
+			},
 			boxShadow: {
 				card: 'rgba(0, 0, 0, 0.15) 0px 2px 8px',
 				cardSkeleton: 'rgba(0,0,0,0.05) 0 0 10px',
