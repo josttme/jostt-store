@@ -17,18 +17,22 @@ export function Login() {
 	}, [location])
 
 	return (
-		<main className="flex h-screen w-full flex-col items-center justify-center bg-gray-50 sm:px-4">
+		<main className="flex w-full  flex-col items-center justify-center bg-gray-50 py-32 sm:px-4">
 			<div className="w-full space-y-6 text-gray-600 sm:max-w-md">
 				<div className="text-center">
-					<img
-						src="https://floatui.com/logo.svg"
-						width={150}
-						className="mx-auto"
-					/>
 					<div className="mt-5 space-y-2">
+						<img
+							src="https://floatui.com/logo.svg"
+							width={150}
+							className="mx-auto"
+						/>
+						<h1 to="/" className="mr-3 text-3xl font-bold text-red-6">
+							JosttStore
+						</h1>
 						<h3 className="whitespace-pre-line text-2xl font-bold text-gray-800 sm:text-3xl">
 							{!errorCheckout ? `Log in to your account` : `${errorCheckout}`}
 						</h3>
+
 						<p className="">
 							Don't have an account?{' '}
 							<Link
@@ -41,7 +45,7 @@ export function Login() {
 					</div>
 				</div>
 				<div className="space-y-8 bg-white p-4 py-6 shadow sm:rounded-lg sm:p-6">
-					<div className="relative">
+					{/* 	<div className="relative">
 						<span className="block h-px w-full bg-gray-300"></span>
 						<p className="absolute inset-x-0 -top-2 mx-auto inline-block w-fit bg-white px-2 text-sm">
 							Default accounts
@@ -63,7 +67,7 @@ export function Login() {
 						<p className="absolute inset-x-0 -top-2 mx-auto inline-block w-fit bg-white px-2 text-sm">
 							Or continue with
 						</p>
-					</div>
+					</div> */}
 					<form onSubmit={handleLoginSubmit} className="space-y-5">
 						<div>
 							<label className="font-medium">Username</label>

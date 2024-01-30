@@ -12,7 +12,7 @@ export function useSearch({ productsSearch }) {
 
 		// Mostrar mensaje si array vacío y búsqueda válida
 		if (productsSearch.length === 0) {
-			setErrorMessage('Producto no encontrado')
+			setErrorMessage('Product not found')
 		} else {
 			// Caso default no mostrar mensaje
 			setErrorMessage('')

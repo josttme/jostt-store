@@ -32,7 +32,8 @@ function Card({
 					<button
 						type="button"
 						onClick={toggledFavorites}
-						className="hover:stroke-red-6 grid h-8 w-8 place-content-center rounded-full bg-slate-100/80 stroke-black p-2 transition duration-300 hover:bg-white/90"
+						title="Like"
+						className="grid h-8 w-8 place-content-center rounded-full bg-slate-100/80 stroke-black p-2 transition duration-300 hover:bg-white/90 hover:stroke-red-6"
 					>
 						<SvgHeart className={`${favorite} h-5 w-5`} />
 					</button>
@@ -44,12 +45,12 @@ function Card({
 			</figure>
 			<h1 className="t  px-5 text-xl  hover:underline">{name}</h1>
 			<div className="flex w-full items-center justify-between  px-5">
-				<p className="text-red-6 text-3xl font-bold">{`$${price}`}</p>
+				<p className="text-3xl font-bold text-red-6">{`$${price}`}</p>
 				<div
 					onClick={addToCart}
-					className="to-red-7 from-red-1   via-red-4 relative  flex items-center rounded-md bg-gradient-to-r  via-30%  before:absolute  before:h-full before:w-full before:rounded-md   hover:before:bg-black/10"
+					className="relative flex   items-center rounded-md  bg-gradient-to-r from-red-1 via-red-4 via-30%  to-red-7  before:absolute  before:h-full before:w-full before:rounded-md   hover:before:bg-black/10"
 				>
-					<div className="bg-red-1 w-10 rounded-l-md p-1  ">
+					<div className="w-10 rounded-l-md bg-red-1 p-1  ">
 						<SvgCartPlus className="fill-red-5 stroke-red-5" />
 					</div>
 					<span className=" px-2 text-center text-white">Add to cart</span>
@@ -101,6 +102,15 @@ export function CardProduct({
 					) : (
 						<ProductSkeleton />
 					)}
+					{products?.length !== 0 ||
+						(favorites && (
+							<div className="grid h-40 w-full max-w-md place-content-center text-center">
+								<p className=" text-xl">
+									You don't have any favorites yet. Explore and add your
+									preferred products!
+								</p>
+							</div>
+						))}
 				</section>
 			</div>
 		</>

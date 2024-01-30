@@ -4,15 +4,18 @@ import { useAuthRegister } from '../hooks/auth'
 export function Register() {
 	const { handleRegisterSubmit, messageError } = useAuthRegister()
 	return (
-		<main className="flex h-screen w-full flex-col items-center justify-center bg-gray-50 sm:px-4">
+		<main className="flex w-full flex-col items-center justify-center bg-gray-50 py-32 sm:px-4">
 			<div className="w-full space-y-6 text-gray-600 sm:max-w-md">
 				<div className="text-center">
-					<img
-						src="https://floatui.com/logo.svg"
-						width={150}
-						className="mx-auto"
-					/>
 					<div className="mt-5 space-y-2">
+						<img
+							src="https://floatui.com/logo.svg"
+							width={150}
+							className="mx-auto"
+						/>
+						<h1 to="/" className="mr-3 text-3xl font-bold text-red-6">
+							JosttStore
+						</h1>
 						<h3 className="text-2xl font-bold text-gray-800 sm:text-3xl">
 							Create an account
 						</h3>
