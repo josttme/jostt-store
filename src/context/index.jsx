@@ -38,6 +38,8 @@ export function ProductProvider({ children }) {
 		setProducts
 	)
 
+	const [openNavBar, setOpenNavBar] = useState(false)
+
 	const isFavorite = (product) => {
 		return favorites.some((item) => item.id === product.id)
 	}
@@ -72,7 +74,9 @@ export function ProductProvider({ children }) {
 		setUsername,
 		errorCheckout,
 		setErrorCheckout,
-		setProducts
+		setProducts,
+		openNavBar,
+		setOpenNavBar
 	}
 
 	return (

@@ -22,6 +22,12 @@ export default {
 			},
 			animation: {
 				'pulse-fast': 'pulse 2000ms cubic-bezier(0.4, 0, 0.6, 1) infinite'
+			},
+			screens: {
+				// iPhone 5/SE
+				iphone5: { raw: '(min-height: 480px)' },
+				// iPhone 6/7/8
+				iphone678: { raw: '(min-height: 570px)' }
 			}
 		}
 	},

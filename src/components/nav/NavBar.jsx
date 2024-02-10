@@ -1,19 +1,22 @@
 import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { ProductContext } from '../context'
-import { SvgCart } from '../components/icons/SvgCart'
-import { SvgUser } from '../components/icons/SvgUser'
+import { ProductContext } from '../../context'
+import { SvgCart } from '../../components/icons/SvgCart'
+import { SvgUser } from '../../components/icons/SvgUser'
 
 export function NavBar() {
 	const { username, quantityProducts } = useContext(ProductContext)
 	const activeClass = 'bg-gray-1 rounded-md p-1 px-2'
 	const classDefault = 'rounded-md p-1 px-2 duration-150 hover:bg-gray-1'
 	return (
-		<div className="nav-bar sticky top-0 z-50 flex h-14 w-full justify-between bg-gray-100 ">
-			<div className="flex items-center gap-2 pl-6">
-				<NavLink to="/" className="mr-3 text-2xl font-bold text-red-6">
-					JosttStore
-				</NavLink>
+		<div className="nav-bar grid h-14 w-full items-center lg:fixed lg:left-0 lg:top-0 lg:z-50 lg:grid-cols-[15%_1fr_1fr] xl:grid-cols-[10%_1fr_1fr] ">
+			<NavLink
+				to="/"
+				className=" ml-5  text-2xl font-bold text-red-6 lg:grid lg:place-content-center"
+			>
+				JosttStore
+			</NavLink>
+			<div className="hidden  gap-2  lg:flex">
 				<NavLink
 					to="/"
 					className={({ isActive }) => (isActive ? activeClass : classDefault)}
@@ -51,8 +54,10 @@ export function NavBar() {
 					Others
 				</NavLink>
 			</div>
-			<div className="flex items-center gap-3 pr-6">
-				<span className="opacity-70">josttme@josttstore.com</span>
+			<div className=" hidden  items-center justify-end gap-3 pr-6 lg:flex">
+				<span className="hidden  opacity-60 xl:inline">
+					josttme@josttstore.com
+				</span>
 				<NavLink
 					to="/favorites"
 					className={({ isActive }) => (isActive ? activeClass : classDefault)}
