@@ -1,6 +1,6 @@
 export function Footer() {
 	return (
-		<footer className="bg-white dark:bg-gray-900">
+		<footer className="bg-white pb-5 lg:pb-0 dark:bg-gray-900 ">
 			<div className="container mx-auto px-6 py-12">
 				<div className="grid grid-cols-1  gap-6 sm:grid-cols-2 ">
 					<div>
@@ -68,11 +68,11 @@ export function Footer() {
 					</div>
 				</div>
 				<hr className="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
-				<div className="flex flex-col items-center justify-between sm:flex-row">
-					<span to="/" className="mr-3 text-2xl font-bold text-red-6">
+				<div className="flex flex-col items-center  sm:flex-row lg:justify-between">
+					<span to="/" className="text-2xl font-bold text-red-6 lg:mr-3">
 						JosttStore
 					</span>
-					<p className="text-md mt-4 text-lg text-gray-500 sm:mt-0 dark:text-gray-300">
+					<p className="text-md mt-4  text-lg text-gray-500 sm:mt-0 dark:text-gray-300">
 						© 2024 JosttMe
 					</p>
 				</div>
