@@ -22,7 +22,7 @@ export function Search({ getProducts, productsSearch, allProducts }) {
 	}
 
 	return (
-		<div className="mx-auto  w-11/12 max-w-md pt-5">
+		<div className="mx-auto pt-5 iphone678:w-4/5 iphone678:max-w-md">
 			<form
 				onSubmit={(e) => e.preventDefault()}
 				className="mb-4 flex h-11 w-full  items-stretch"
@@ -39,7 +39,7 @@ export function Search({ getProducts, productsSearch, allProducts }) {
 				</span>
 			</form>
 			<div className={`h-6 w-full transition-all `}>
-				<p className="text-red-6  text-center">{errorMessage}</p>
+				<p className="text-center  text-red-6">{errorMessage}</p>
 			</div>
 		</div>
 	)

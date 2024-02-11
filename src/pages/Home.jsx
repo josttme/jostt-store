@@ -26,7 +26,7 @@ export function Home() {
 	const { pathname } = useLocation()
 	useResetScroll([pathname])
 	return (
-		<section className=" grid min-h-[calc(100vh-3.5rem)] w-full grid-rows-[auto_1fr_auto] pb-10 ">
+		<section className=" grid min-h-[calc(100vh-3.5rem)] w-full grid-cols-1 grid-rows-[auto_1fr_auto] pb-10 ">
 			<Search
 				getProducts={getProducts}
 				productsSearch={productsSearch}
