@@ -5,7 +5,7 @@ const Image = ({ src, title }) => {
 	const [loaded, setLoaded] = useState(false)
 
 	return (
-		<div className="relative">
+		<div className="relative aspect-square h-full w-full overflow-hidden rounded-xl shadow-sm lg:rounded-none">
 			<img
 				className="h-full w-full"
 				src={src}
