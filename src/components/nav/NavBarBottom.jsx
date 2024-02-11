@@ -12,38 +12,39 @@ export function NavBarBottom() {
 	const { openNavBar, setOpenNavBar, quantityProducts } =
 		useContext(ProductContext)
 	return (
-		<nav className="nav-bar fixed bottom-0 left-0 z-40 flex h-14 w-screen justify-between  justify-items-center bg-slate-500  text-sm   lg:hidden ">
+		<nav className="nav-bar fixed bottom-0 left-0 z-40 flex h-14 w-screen justify-between  justify-items-center bg-slate-500 text-sm lg:hidden ">
 			<div
-				className="iphone678:gap-4 grid w-full grid-cols-4"
+				className="grid w-full grid-cols-4 iphone678:gap-4"
 				onClick={() => setOpenNavBar(false)}
 			>
 				<NavLinkActivated to="/">
-					<SvgHome className="h-6 w-6 justify-self-center fill-black" />
+					<SvgHome className="h-6 w-6 justify-self-center" strokeWidth="1" />
 					Home
 				</NavLinkActivated>
+
 				<NavLinkActivated to="/favorites">
-					<SvgHeart
-						className="h-6 w-6 justify-self-center fill-none stroke-black"
-						strokeWidth="1.1"
-					/>
+					<SvgHeart className="h-6 w-6 justify-self-center" strokeWidth="1.2" />
 					Favorites
 				</NavLinkActivated>
+
 				<NavLinkActivated to="/account">
-					<SvgUser className="h-6 w-6 justify-self-center stroke-current" />
+					<SvgUser className="h-6 w-6 justify-self-center " strokeWidth="1" />
 					Profile
 				</NavLinkActivated>
+
 				<NavLinkActivated to="/cart">
-					<div className="relative ">
-						<SvgCart className="h-6 w-6 fill-black stroke-black" />
-						<span className="absolute bottom-3 left-4 grid h-5 w-5  place-content-center rounded-full  bg-red-5 text-xs font-bold text-white">
+					<div className="relative">
+						<SvgCart className=" h-6 w-6" />
+						<span className="absolute bottom-3 left-4 grid h-5 w-5  place-content-center rounded-full   bg-red-5 text-xs font-bold text-white">
 							{quantityProducts}
 						</span>
 					</div>
 					Cart
 				</NavLinkActivated>
 			</div>
+
 			<button
-				className="placew-12 iphone678:ml-2 relative mr-2  grid h-12 place-content-center self-center  "
+				className="placew-12 relative mr-2 grid  h-12 place-content-center self-center iphone678:ml-2  "
 				type="button"
 				onClick={() => setOpenNavBar(!openNavBar)}
 				style={{
