@@ -1,15 +1,8 @@
 import PropTypes from 'prop-types'
 
-export function ProductInfo({
-	title,
-	description,
-	author,
-	authorLink,
-	sourceLink
-}) {
+export function ProductInfo({ description, author, authorLink, sourceLink }) {
 	return (
-		<>
-			<h1 className="text-4xl"> {title}</h1>
+		<div className="col-span-2 row-start-4 pb-20 pt-5 lg:p-0">
 			<p className="mb-2 text-lg">{description}</p>
 
 			<ProductInfoAuthor
@@ -17,7 +10,7 @@ export function ProductInfo({
 				authorLink={authorLink}
 				sourceLink={sourceLink}
 			/>
-		</>
+		</div>
 	)
 }
 
@@ -53,7 +46,6 @@ ProductInfoAuthor.propTypes = {
 }
 
 ProductInfo.propTypes = {
-	title: PropTypes.string.isRequired,
 	description: PropTypes.string.isRequired,
 	author: PropTypes.string,
 	authorLink: PropTypes.string,
