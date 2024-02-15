@@ -36,8 +36,7 @@ function Card({
 						className="grid h-8 w-8 place-content-center rounded-full bg-slate-100/80 transition duration-300 hover:bg-white/90 hover:stroke-red-6"
 					>
 						<SvgHeart
-							className={`${favorite} grid h-5 w-5 place-content-center stroke-black  `}
-							strokeWidth="1.3"
+							className={`${favorite} grid h-5 w-5 place-content-center stroke-black stroke-[1.3] lg:stroke-[1.6]  lg:hover:stroke-red-6`}
 						/>
 					</button>
 				</div>
