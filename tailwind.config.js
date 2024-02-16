@@ -27,7 +27,9 @@ export default {
 				// iPhone 5/SE
 				iphone5: { raw: '(min-height: 480px)' },
 				// iPhone 6/7/8
-				iphone678: { raw: '(min-height: 570px)' }
+				iphone678: { raw: '(min-height: 570px)' },
+
+				hmd: { raw: '(min-height: 768px)' }
 			}
 		}
 	},
