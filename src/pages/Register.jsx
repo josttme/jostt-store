@@ -1,83 +1,55 @@
-import { Link } from 'react-router-dom'
 import { useAuthRegister } from '../hooks/auth'
+import {
+	FormHeader,
+	FormField,
+	FomtButton,
+	FormMessage
+} from '../components/form/'
 
 export function Register() {
 	const { handleRegisterSubmit, messageError } = useAuthRegister()
 	return (
-		<main className="flex w-full flex-col items-center justify-center bg-gray-50 py-32 sm:px-4">
-			<div className="w-full space-y-6 text-gray-600 sm:max-w-md">
-				<div className="text-center">
-					<div className="mt-5 space-y-2">
-						<img
-							src="https://floatui.com/logo.svg"
-							width={150}
-							className="mx-auto"
+		<main className="flex min-h-[80vh]  w-full flex-col items-center justify-center bg-gray-50 sm:px-4">
+			<section className="w-full max-w-md space-y-10 px-2 pb-20 pt-10 text-gray-600">
+				<FormHeader
+					title="Create an account"
+					subtitle="Already have an account?"
+					link="Log in"
+					path="/login"
+				/>
+				<div className="rounded-lg  border border-slate-400/15 bg-white p-4 text-lg shadow sm:p-6">
+					<form onSubmit={handleRegisterSubmit} className="space-y-6">
+						<FormField
+							label="Username"
+							name="username"
+							type="text"
+							pattern="[A-Za-z0-9]*"
+							title="Only letters and numbers are allowed"
+							autoComplete="username"
+							placeholder="username123"
+							required
 						/>
-						<h1 to="/" className="mr-3 text-3xl font-bold text-red-6">
-							JosttStore
-						</h1>
-						<h3 className="text-2xl font-bold text-gray-800 sm:text-3xl">
-							Create an account
-						</h3>
-						<p className="">
-							Already have an account?{' '}
-							<Link
-								to="/login"
-								className="font-medium text-indigo-600 hover:text-indigo-500"
-							>
-								Log in
-							</Link>
-						</p>
-					</div>
-				</div>
-				<div className="bg-white p-4 py-6 shadow sm:rounded-lg sm:p-6">
-					<form onSubmit={handleRegisterSubmit} className="space-y-5">
-						<div>
-							<label className="font-medium">Username</label>
-							<input
-								name="username"
-								type="text"
-								required
-								pattern="[A-Za-z0-9]*"
-								title="Solo letras y números están permitidos"
-								autoComplete="username"
-								className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
-							/>
-						</div>
-						<div>
-							<label className="font-medium">Email</label>
-							<input
-								name="email"
-								type="email"
-								required
-								autoComplete="email"
-								className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
-							/>
-						</div>
-						<div>
-							<label className="font-medium">Password</label>
-							<input
-								name="password"
-								type="password"
-								required
-								autoComplete="current-password"
-								className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
-							/>
-						</div>
-						<button className="w-full rounded-lg bg-indigo-600 px-4 py-2 font-medium text-white duration-150 hover:bg-indigo-500 active:bg-indigo-600">
-							Create account
-						</button>
-						{messageError && (
-							<div
-								className="relative rounded border border-red-400 bg-red-100 px-4 py-3 text-center text-red-700"
-								role="alert"
-							>
-								<span>{messageError}</span>
-							</div>
-						)}
+						<FormField
+							label="Email"
+							name="email"
+							type="email"
+							autoComplete="email"
+							placeholder="username@example.com"
+							required
+						/>
+						<FormField
+							label="Password"
+							name="password"
+							type="password"
+							autoComplete="new-password"
+							placeholder="*******************************"
+							required
+						/>
+						<FomtButton value="Create account" />
+						<FormMessage messageError={messageError} />
 					</form>
 				</div>
-			</div>
+			</section>
 		</main>
 	)
 }
