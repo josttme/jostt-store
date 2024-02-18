@@ -11,7 +11,7 @@ export function FormHeader({ title, subtitle, link, path }) {
 			<p className="mr-1 inline-block text-lg">{subtitle}</p>
 			<Link
 				to={path}
-				className="font-medium text-[#0a7beb] hover:text-[#1b99ff]"
+				className="inline-block font-medium text-[#0a7beb] hover:text-[#1b99ff]"
 			>
 				{link}
 			</Link>
