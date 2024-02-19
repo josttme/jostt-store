@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ProductContext } from '../context'
-import { getUserByUsername } from '../utils'
-import { EditProfile } from '../components/EditProfile'
-import { RemoveUserModal } from '../components/RemoveUserModal'
+import { getUserByUsername, useResetScroll } from '../utils'
+import { EditProfile } from '../components/account/EditProfile'
+import { RemoveUserModal } from '../components/account/RemoveUserModal'
+import { CustomButton } from '../components/account/CustomButton'
 
 export function Account() {
 	const [editUserData, setEditUserData] = useState(false)
@@ -12,49 +13,51 @@ export function Account() {
 	const { email } = getUserByUsername({ username, usersExisting })
 
 	const firstTwoLetters = username.substring(0, 2).toUpperCase()
-
+	// Scroll al principio de la página cuando se cambia de ruta.
+	const { pathname } = useLocation()
+	useResetScroll([pathname])
 	return (
-		<div className="mx-auto my-10 grid max-w-lg justify-center">
-			<div></div>
-			<div className="flex justify-center">
-				<span className="grid h-32 w-32 place-content-center rounded-full bg-blue-500 text-7xl font-bold text-white">
+		<main className="mx-auto flex min-h-[80vh] w-full max-w-sm flex-col pt-10 ">
+			<header className="flex flex-col items-center space-y-2">
+				<span className="grid h-32 w-32 place-content-center rounded-full bg-[#0a7beb] text-7xl font-bold text-white">
 					{firstTwoLetters}
 				</span>
-			</div>
-
-			<div className="mt-5 text-center">
-				<h1 className="text-3xl font-bold">{username}</h1>
+				<h2 className="text-3xl font-bold">{username}</h2>
 				<p className="text-gray-500">{email}</p>
-			</div>
+			</header>
 
-			<div className="mt-5 grid w-full place-content-center  items-center gap-5 text-center">
-				<button
-					type="button"
+			<section className="mt-5 grid w-full place-content-center  items-center gap-4 text-center">
+				<CustomButton
 					onClick={() => setEditUserData(true)}
-					className=" w-36 rounded-full bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+					className="bg-[#0a7beb] hover:bg-[#1b99ff]"
 				>
 					Edit Profile
-				</button>
-				<Link
-					to="/login"
-					onClick={() => setUsername('')}
-					className=" w-36 rounded-full bg-blue-500 px-4 py-2 text-center text-white hover:bg-blue-600"
-				>
-					Log Out
+				</CustomButton>
+				<Link to="/login">
+					<CustomButton
+						onClick={() => setUsername('')}
+						className="bg-[#0a7beb] hover:bg-[#1b99ff]"
+					>
+						Log Out
+					</CustomButton>
 				</Link>
-				<button
-					type="button"
+				<CustomButton
 					onClick={() => setCloseModal(true)}
-					className=" w-36 rounded-full bg-[#dc2626] px-4 py-2 text-white hover:bg-[#d50000]"
+					className="bg-[#dc2626] hover:bg-[#d50000]"
 				>
 					Delete account
-				</button>
-			</div>
+				</CustomButton>
+			</section>
 
-			{editUserData && <EditProfile setEditUserData={setEditUserData} />}
-			{closeModal && (
-				<RemoveUserModal setCloseModal={setCloseModal} username={username} />
-			)}
-		</div>
+			<EditProfile
+				editUserData={editUserData}
+				setEditUserData={setEditUserData}
+			/>
+			<RemoveUserModal
+				closeModal={closeModal}
+				setCloseModal={setCloseModal}
+				username={username}
+			/>
+		</main>
 	)
 }
