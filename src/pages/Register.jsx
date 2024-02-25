@@ -1,10 +1,10 @@
-import { useAuthRegister } from '../hooks/auth'
+import { useAuthRegister } from '@hooks/auth'
 import {
 	FormHeader,
 	FormField,
 	FomtButton,
 	FormMessage
-} from '../components/form/'
+} from '@components/form/'
 
 export function Register() {
 	const { handleRegisterSubmit, messageError } = useAuthRegister()

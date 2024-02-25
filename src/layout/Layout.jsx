@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom'
-import { NavBarLeft } from '../components/nav/NavBarLeft'
-import { Footer } from '../components/Footer'
-import { NavBarBottom } from '../components/nav/NavBarBottom'
-import { NavBar } from '../components/nav/NavBar'
+import { NavBarLeft } from '@components/nav/NavBarLeft'
+import { Footer } from '@components/Footer'
+import { NavBarBottom } from '@components/nav/NavBarBottom'
+import { NavBar } from '@components/nav/NavBar'
 
 export function Layout() {
 	return (

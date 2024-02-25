@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useNavigation, useResetScroll } from '../utils'
-import { CardProduct } from '../components/Card'
-import { ProductContext } from '../context'
-import { getProductsByCategory } from '../services/products'
-import { useGetProducts } from '../hooks/useGetProducts'
+import { useNavigation, useResetScroll } from '@utils'
+import { CardProduct } from '@components/Card'
+import { ProductContext } from '@context'
+import { getProductsByCategory } from '@services/products'
+import { useGetProducts } from '@hooks/useGetProducts'
 
 export function Category() {
 	const { addToCart, isFavorite, toggledFavorites } = useContext(ProductContext)

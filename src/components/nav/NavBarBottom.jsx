@@ -4,7 +4,7 @@ import { SvgHeart } from '../icons/SvgHeart'
 import { SvgBurger } from '../icons/SvgBurger'
 import { SvgCart } from '../icons/SvgCart'
 import { useContext } from 'react'
-import { ProductContext } from '../../context'
+import { ProductContext } from '@context'
 import { SvgClosed } from '../icons/SvgClosed'
 import { NavLinkActivated } from './NavLinkActivated'
 

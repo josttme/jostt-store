@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { ProductContext } from '../../context'
-import { SvgCart } from '../../components/icons/SvgCart'
-import { SvgUser } from '../../components/icons/SvgUser'
+import { ProductContext } from '@context'
+import { SvgCart } from '@components/icons/SvgCart'
+import { SvgUser } from '@components/icons/SvgUser'
 
 export function NavBar() {
 	const { username, quantityProducts } = useContext(ProductContext)

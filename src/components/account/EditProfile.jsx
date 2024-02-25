@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { ProductContext } from '../../context/index'
-import { useAuthEditProfile } from '../../hooks/auth/useAuthEditProfile'
+import { ProductContext } from '@context/index'
+import { useAuthEditProfile } from '@hooks/auth/useAuthEditProfile'
 import { FormField, FomtButton, FormMessage } from '../form'
 import { SvgClosed } from '../icons/SvgClosed'
 

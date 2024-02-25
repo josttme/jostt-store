@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-import { ProductContext } from '../../context'
+import { ProductContext } from '@context'
 
 export function NavBarLeft() {
 	const { username, openNavBar, setOpenNavBar } = useContext(ProductContext)
@@ -14,7 +14,7 @@ export function NavBarLeft() {
 					openNavBar ? '-translate-x-0' : '-translate-x-full'
 				} nav-bar fixed	top-0 z-40 flex h-screen  w-4/5 flex-col transition-all  duration-300 lg:hidden`}
 			>
-				<div className="iphone678:gap-4 mt-5 flex flex-col gap-1 px-7 text-xl  ">
+				<div className="mt-5 flex flex-col gap-1 px-7 text-xl iphone678:gap-4  ">
 					<NavLink
 						to="/"
 						className=" pl-5 text-3xl font-bold text-red-6"

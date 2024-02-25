@@ -1,10 +1,10 @@
 import { PropTypes } from 'prop-types'
 import { useContext, useEffect, useState } from 'react'
-import { ProductContext } from '../context'
+import { ProductContext } from '@context'
 import { Link, useLocation } from 'react-router-dom'
-import { SvgRemove } from '../components/icons/SvgRemove'
-import { useCheckout } from '../hooks/useCheckout'
-import { useResetScroll } from '../utils'
+import { SvgRemove } from '@components/icons/SvgRemove'
+import { useCheckout } from '@hooks/useCheckout'
+import { useResetScroll } from '@utils'
 
 export function Cart() {
 	const { cartItems, quantityProducts } = useContext(ProductContext)

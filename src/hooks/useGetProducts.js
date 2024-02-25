@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react'
 import gql from 'graphql-tag'
 import { useGraphQL } from './useGraphQL'
-import { mappedProducts } from '../services/products'
-import { ProductContext } from '../context'
+import { mappedProducts } from '@services/products'
+import { ProductContext } from '@context'
 
 export function useGetProducts() {
 	const { allProducts, productsLoaded, setAllProducts, setProductsLoaded } =

@@ -1,13 +1,13 @@
 import { useContext } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { CardProduct } from '../components/Card'
-import { ProductContext } from '../context'
-import { Search } from '../components/Search'
-import { Pagination } from '../components/Pagination'
-import { useNavigation, useResetScroll } from '../utils'
-import { useProductsSearch } from '../hooks/useProductsSearch'
-import { usePagination } from '../hooks/usePagination'
-import { useGetProducts } from '../hooks/useGetProducts'
+import { CardProduct } from '@components/Card'
+import { ProductContext } from '@context'
+import { Search } from '@components/Search'
+import { Pagination } from '@components/Pagination'
+import { useNavigation, useResetScroll } from '@utils'
+import { useProductsSearch } from '@hooks/useProductsSearch'
+import { usePagination } from '@hooks/usePagination'
+import { useGetProducts } from '@hooks/useGetProducts'
 
 export function Home() {
 	const { addToCart, isFavorite, toggledFavorites } = useContext(ProductContext)

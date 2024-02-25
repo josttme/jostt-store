@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import { createContext, useEffect, useState } from 'react'
-import { useToggleFavotites } from '../hooks/useToggleFavotites'
-import { useCart } from '../hooks/useCart'
-import { useSessionStorage } from '../hooks/useSessionStorage'
-import useLocalStorage from '../hooks/useLocalStorage'
+import { useToggleFavotites } from '@hooks/useToggleFavotites'
+import { useCart } from '@hooks/useCart'
+import { useSessionStorage } from '@hooks/useSessionStorage'
+import useLocalStorage from '@hooks/useLocalStorage'
 
 export const ProductContext = createContext()
 

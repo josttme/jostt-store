@@ -1,13 +1,13 @@
 import { useLocation } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
-import { useAuthLogin } from '../hooks/auth'
-import { ProductContext } from '../context'
+import { useAuthLogin } from '@hooks/auth'
+import { ProductContext } from '@context'
 import {
 	FormHeader,
 	FormField,
 	FomtButton,
 	FormMessage
-} from '../components/form/'
+} from '@components/form/'
 export function Login() {
 	const { handleLoginSubmit, messageError } = useAuthLogin()
 	const { errorCheckout, setErrorCheckout } = useContext(ProductContext)

@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { PropTypes } from 'prop-types'
 import debounce from 'just-debounce-it'
-import { SvgSearch } from '../components/icons/SvgSearch'
-import { useSearch } from '../hooks/useSearch'
+import { SvgSearch } from '@components/icons/SvgSearch'
+import { useSearch } from '@hooks/useSearch'
 
 export function Search({ getProducts, productsSearch, allProducts }) {
 	const { search, updateSearch, errorMessage } = useSearch({ productsSearch })

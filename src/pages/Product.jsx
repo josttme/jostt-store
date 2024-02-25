@@ -1,13 +1,13 @@
 import { useContext } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { ProductContext } from '../context'
-import { SvgHeart } from '../components/icons/SvgHeart'
-import { ProductInfo } from '../components/ProductInfo'
-import { ProductImage } from '../components/ProductImage'
-import { CategoryButton } from '../components/CategoryButton'
-import { getProductById } from '../services/products'
-import { useGetProducts } from '../hooks/useGetProducts'
-import { useResetScroll } from '../utils'
+import { ProductContext } from '@context'
+import { SvgHeart } from '@components/icons/SvgHeart'
+import { ProductInfo } from '@components/ProductInfo'
+import { ProductImage } from '@components/ProductImage'
+import { CategoryButton } from '@components/CategoryButton'
+import { getProductById } from '@services/products'
+import { useGetProducts } from '@hooks/useGetProducts'
+import { useResetScroll } from '@utils'
 
 export function Product() {
 	const { isFavorite, toggledFavorites, addToCart } = useContext(ProductContext)

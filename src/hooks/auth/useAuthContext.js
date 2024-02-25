@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { ProductContext } from '../../context'
+import { ProductContext } from '@context'
 import { useAuthUtils } from './useAuthUtils'
 import { useUpdateUserFavorites } from '../user/useUpdateUserFavorites'
 import { useUpdateUserCart } from '../user/useUpdateUserCart'

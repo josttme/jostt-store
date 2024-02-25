@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { ProductContext } from '../context'
-import { getUserByUsername, useResetScroll } from '../utils'
-import { EditProfile } from '../components/account/EditProfile'
-import { RemoveUserModal } from '../components/account/RemoveUserModal'
-import { CustomButton } from '../components/account/CustomButton'
+import { ProductContext } from '@context'
+import { getUserByUsername, useResetScroll } from '@utils'
+import { EditProfile } from '@components/account/EditProfile'
+import { RemoveUserModal } from '@components/account/RemoveUserModal'
+import { CustomButton } from '@components/account/CustomButton'
 
 export function Account() {
 	const [editUserData, setEditUserData] = useState(false)
