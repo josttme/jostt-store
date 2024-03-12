@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 // Clave en el localStorage para almacenar los likes
-const LIKES_STORAGE_KEY = 'product-likes'
+const LIKES_STORAGE_KEY = 'store-likes'
 
 // Función auxiliar para obtener los likes del localStorage
 const getLikesFromStorage = () => {
