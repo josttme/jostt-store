@@ -78,6 +78,31 @@ export const addToUserCart = createAsyncThunk(
 	'users/addToUserCart',
 	async ({ username, product }, { getState }) => {
 		// Lógica para agregar el producto al carrito del usuario
+		const state = getState()
+		const user = state.storeUsers.users.find((u) => u.username === username)
+		const userIndex = user.cartItems.findIndex((up) => up.id === product.id)
+		if (userIndex !== -1) {
+			const updatedCart = user.cartItems.map((cartProduct) => {
+				if (cartProduct.id === product.id) {
+					return { ...cartProduct, quantity: cartProduct.quantity + 1 }
+				}
+				return cartProduct
+			})
+
+			const updatedUsers = state.storeUsers.users.map((u) =>
+				u.username === username ? { ...u, cartItems: updatedCart } : u
+			)
+			localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(updatedUsers))
+			return updatedUsers
+		} else {
+			const updatedUsers = state.storeUsers.users.map((u) =>
+				u.username === username
+					? { ...u, cartItems: [...u.cartItems, { ...product, quantity: 1 }] }
+					: u
+			)
+			localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(updatedUsers))
+			return updatedUsers
+		}
 	}
 )
 
