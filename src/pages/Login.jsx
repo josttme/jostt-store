@@ -1,22 +1,31 @@
 import { useLocation } from 'react-router-dom'
-import { useContext, useEffect } from 'react'
-import { useAuthLogin } from '@hooks/auth'
-import { ProductContext } from '@context'
+import { useEffect } from 'react'
 import {
 	FormHeader,
 	FormField,
 	FomtButton,
 	FormMessage
 } from '@components/form/'
+import { useDispatch, useSelector } from 'react-redux'
+import { useAuthLogin } from '../hooks/auth/useLogin'
+
 export function Login() {
-	const { handleLoginSubmit, messageError } = useAuthLogin()
-	const { errorCheckout, setErrorCheckout } = useContext(ProductContext)
+	const dispatch = useDispatch()
+	const users = useSelector((state) => state.storeUsers.users)
+	const favorites = useSelector((state) => state.storeLikes.likes)
+	const cartItems = useSelector((state) => state.storeCart.cart)
+	const { handleLoginSubmit, messageError, setMessageError } = useAuthLogin(
+		users,
+		favorites,
+		cartItems,
+		dispatch
+	)
 	const location = useLocation()
 
 	useEffect(() => {
 		return () => {
 			if (location.pathname === '/login') {
-				setErrorCheckout('')
+				setMessageError('')
 			}
 		}
 	}, [location])
@@ -27,7 +36,7 @@ export function Login() {
 				<FormHeader
 					title="Log in to your account"
 					subtitle={
-						!errorCheckout ? `Don't have an account?` : `${errorCheckout}`
+						!messageError ? `Don't have an account?` : `${messageError}`
 					}
 					link="Sign up"
 					path="/register"
