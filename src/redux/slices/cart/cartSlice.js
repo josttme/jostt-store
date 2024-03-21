@@ -93,9 +93,18 @@ export const cartSlice = createSlice({
 
 			state.cart = updatedCart
 			saveCartToLocalStorage(updatedCart)
+		},
+		removeAllCart: (state) => {
+			state.cart = []
+			saveCartToLocalStorage([])
 		}
 	}
 })
 
-export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity } =
-	cartSlice.actions
+export const {
+	addToCart,
+	removeFromCart,
+	increaseQuantity,
+	decreaseQuantity,
+	removeAllCart
+} = cartSlice.actions
