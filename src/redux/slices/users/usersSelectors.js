@@ -1,25 +1,46 @@
 import { createSelector } from '@reduxjs/toolkit'
 
-export const selectUsers = (state) => state.users
+// Selector para obtener el usuario actual del estado
+// const getCurrentUser = (state) => state.user.currentUser
+const getCurrentUser = (state) => state.storeCurrenUser.currentUser
+// Selector para obtener la lista de usuarios del estado
+// const getUsers = (state) => state.users.allUsers
+const getUsers = (state) => state.storeUsers.users
 
-export const selectUserByUsername = createSelector(
-	selectUsers,
-	(_, username) => username,
-	(users, username) => {
-		if (Array.isArray(users)) {
-			return users.find((user) => user.username === username)
+// Función utilitaria para encontrar un usuario por su nombre de usuario
+const findUserByUsername = (users, username) => {
+	return users.find((user) => user.username === username)
+}
+
+// Selector memoizado para obtener los detalles del usuario actual
+export const getCurrentUserDetails = createSelector(
+	[getCurrentUser, getUsers], // Selectores de los que depende
+	(currentUser, users) => {
+		// Si no hay un usuario actual, devuelve un objeto vacío
+		if (!currentUser) return ''
+		// Encuentra el usuario actual en la lista de usuarios
+		const user = findUserByUsername(users, currentUser)
+
+		// Si no se encuentra el usuario actual, devuelve un objeto vacío
+		if (!user) return ''
+
+		// Devuelve un objeto con los detalles del usuario actual
+		return {
+			username: user.username,
+			email: user.email,
+			favorites: user.favorites,
+			cartItems: user.cartItems
 		}
-		return undefined
 	}
 )
 
-export const selectUserByEmail = createSelector(
-	selectUsers,
-	(_, email) => email,
-	(users, email) => {
-		if (Array.isArray(users)) {
-			return users.find((user) => user.email === email)
-		}
-		return undefined
-	}
-)
+export const getSumProductSubtotal = createSelector((currentUser, users) => {
+	// Si no hay un usuario actual, devuelve un objeto vacío
+	if (!currentUser) return ''
+	// Encuentra el usuario actual en la lista de usuarios
+	const user = findUserByUsername(users, currentUser)
+	console.log(user)
+	/* selectCartItems(state).find((item) => item.id === productId),
+			(product) => (product ? product.price * product.quantity : 0) */
+	return users
+})
