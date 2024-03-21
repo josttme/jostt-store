@@ -18,13 +18,38 @@ export const usersSlice = createSlice({
 	reducers: {
 		addUser: (state, action) => {
 			const { newUser } = action.payload
+			const updateUser = (state.users = [...state.users, newUser])
+			console.log(updateUser)
+			localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(updateUser))
+		},
+		loginUser: (state, action) => {
+			const { updateUser } = action.payload
+			const username = updateUser.username
+			const updatedUsers = state.users.map((user) => {
+				if (user.username === username) {
+					return { ...user, ...updateUser }
+				}
+				return user
+			})
 
-			state.users = [...state.users, newUser]
-			localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(state.users))
+			localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(updatedUsers))
+			return { ...state, users: updatedUsers } // Devolver el estado actualizado con el array de usuarios actualizado
+		},
+		editUser: (state, action) => {
+			const { updateUser, currentUser } = action.payload
+			const updatedUsers = state.users.map((user) => {
+				if (user.username === currentUser) {
+					return { ...user, ...updateUser }
+				}
+				return user
+			})
+			console.log(updateUser)
+
+			localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(updatedUsers))
+			return { ...state, users: updatedUsers }
 		},
 		removeUser: (state, action) => {
 			const { username } = action.payload
-			console.log(username)
 			state.users = state.users.filter((user) => user.username !== username)
 			localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(state.users))
 		}
@@ -170,4 +195,4 @@ export const removeAllUserCart = createAsyncThunk(
 	}
 )
 
-export const { addUser, removeUser } = usersSlice.actions
+export const { addUser, removeUser, loginUser, editUser } = usersSlice.actions
