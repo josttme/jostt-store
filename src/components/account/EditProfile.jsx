@@ -1,14 +1,21 @@
-import { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { ProductContext } from '@context/index'
-import { useAuthEditProfile } from '@hooks/auth/useAuthEditProfile'
 import { FormField, FomtButton, FormMessage } from '../form'
 import { SvgClosed } from '../icons/SvgClosed'
+import { useDispatch, useSelector } from 'react-redux'
+import { useAuthEditProfile } from '../../hooks/auth/useEditProfile'
+import { getCurrentUserDetails } from '../../redux/slices/users/usersSelectors'
 
 export function EditProfile({ setEditUserData, editUserData }) {
+	const dispatch = useDispatch()
+	const { username: currentUser } = useSelector(getCurrentUserDetails)
+
+	const users = useSelector((state) => state.storeUsers.users)
+	const { handleEditProfile, messageError } = useAuthEditProfile(
+		users,
+		currentUser,
+		dispatch
+	)
 	if (!editUserData) return
-	const { username } = useContext(ProductContext)
-	const { handleEditProfile, messageError } = useAuthEditProfile({ username })
 	return (
 		<div className="relative m-5 my-5 bg-white px-4 py-6 shadow sm:rounded-lg sm:px-6">
 			<form onSubmit={handleEditProfile} className="space-y-5">
