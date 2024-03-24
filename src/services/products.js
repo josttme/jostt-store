@@ -1,29 +1,32 @@
-// const API = 'http://localhost:5173/src/api/products.json'
+/**
+ * Obtiene productos que coincidan con la búsqueda.
+ * @param {string} search - Término de búsqueda.
+ * @param {Array} allProducts - Todos los productos disponibles.
+ * @returns {Array|null} - Array de productos coincidentes o null si la búsqueda está vacía.
+ */
 export function getSearchProducts({ search, allProducts }) {
-	if (search === '') return null
-	return allProducts?.filter((p) =>
-		p.name.toLowerCase().includes(search.toLowerCase())
+	if (!search) return null // Si la búsqueda está vacía, devuelve null
+	return allProducts?.filter((product) =>
+		product.name.toLowerCase().includes(search.toLowerCase())
 	)
 }
+
+/**
+ * Obtiene productos por categoría.
+ * @param {string} categoryId - ID de la categoría.
+ * @param {Array} allProducts - Todos los productos disponibles.
+ * @returns {Array} - Array de productos de la categoría especificada.
+ */
 export function getProductsByCategory({ categoryId, allProducts }) {
-	return allProducts?.filter((product) => product?.categoryId === categoryId)
+	return allProducts?.filter((product) => product.categoryId === categoryId)
 }
 
-export function getProductById({ id, allProducts }) {
-	return allProducts.find((product) => product.id === id)
-}
-
-export function mappedProducts(products) {
-	return products?.map((product) => ({
-		id: product.id,
-		name: product.title,
-		price: product.price,
-		description: product.description,
-		mainImage: product.imageMedium,
-		categoryName: product.category.name,
-		categoryId: product.category.id,
-		createdBy: product.credit.author,
-		createdByLink: product.credit.authorLink,
-		sourceLink: product.credit.sourceLink
-	}))
+/**
+ * Obtiene un producto por su ID.
+ * @param {string} idProduct - ID del producto.
+ * @param {Array} allProducts - Todos los productos disponibles.
+ * @returns {Object|undefined} - Producto encontrado o undefined si no se encuentra.
+ */
+export function getProductById({ idProduct, allProducts }) {
+	return allProducts.find((product) => product.id === idProduct)
 }
