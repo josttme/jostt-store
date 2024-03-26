@@ -1,9 +1,17 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-export function usePagination({ allProducts, productsSearch }) {
+const POSTS_PER_PAGE = 9
+
+export function usePagination({ products: allProducts }) {
 	const [currentPage, setCurrentPage] = useState(1)
-	const [postsPerPage] = useState(9)
+	const [totalPages, setTotalPages] = useState(0)
+
+	useEffect(() => {
+		const totalItems = allProducts?.length || 0
+		const totalPages = Math.ceil(totalItems / POSTS_PER_PAGE)
+		setTotalPages(totalPages)
+	}, [allProducts])
 
 	// Ubicación actual
 	const location = useLocation()
@@ -16,17 +24,27 @@ export function usePagination({ allProducts, productsSearch }) {
 		// Actualiza la vista cuando cambie la ruta
 		setCurrentPage(numeroPagina)
 	}, [location])
-	const products = useMemo(() => {
-		const postsPerPage = 9
-		const lastPostIndex = numeroPagina * postsPerPage
-		const firstPostIndex = lastPostIndex - postsPerPage
-		const currentPosts = allProducts?.slice(firstPostIndex, lastPostIndex)
-		let products
 
-		productsSearch?.length
-			? (products = productsSearch)
-			: (products = currentPosts)
-		return products
-	}, [productsSearch, currentPage, allProducts])
-	return { products, postsPerPage, setCurrentPage, currentPage }
+	const onPageChange = (pageNumber) => {
+		setCurrentPage(pageNumber)
+	}
+
+	const products = useMemo(() => {
+		if (!allProducts) return
+
+		const lastIndex = numeroPagina * POSTS_PER_PAGE
+		const firstIndex = lastIndex - POSTS_PER_PAGE
+
+		return { firstIndex, lastIndex }
+	}, [currentPage])
+
+	const { firstIndex, lastIndex } = products
+
+	return {
+		totalPages,
+		firstIndex,
+		lastIndex,
+		onPageChange,
+		currentPage
+	}
 }
