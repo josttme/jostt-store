@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import { setCurrentUser } from '../../redux/slices/sessionSlice'
 import { loginUser, removeAllCart, removeAllLikes } from '../../redux/slices'
+import { isExist } from './authUtils'
 
 export function useAuthLogin(users, favorites, cartItems, dispatch) {
 	const [messageError, setMessageError] = useState('')
-
-	// Función para verificar si un valor existe en un array de objetos.
-	const isExist = (field, value) => users.some((u) => u[field] === value)
 
 	// Función para actualizar un array de objetos.
 	function updateUserArray(existingArray, newArray) {
