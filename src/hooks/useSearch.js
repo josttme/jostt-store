@@ -1,23 +1,27 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import debounce from 'just-debounce-it'
 
-export function useSearch({ productsSearch }) {
-	const [search, updateSearch] = useState('')
-	const [errorMessage, setErrorMessage] = useState(null)
+export function useSearch({ products, isLoading, onSearch }) {
+	const [errorMessage, setErrorMessage] = useState('')
 	useEffect(() => {
-		// No mostrar mensaje si búsqueda vacía
-		if (search.length === 0) {
-			setErrorMessage('')
-			return
-		}
-
 		// Mostrar mensaje si array vacío y búsqueda válida
-		if (productsSearch.length === 0) {
-			setErrorMessage('Product not found')
-		} else {
-			// Caso default no mostrar mensaje
-			setErrorMessage('')
-		}
-	}, [productsSearch])
+		products?.length === 0 && !isLoading
+			? setErrorMessage('Product not found')
+			: setErrorMessage('')
+	}, [products])
 
-	return { search, updateSearch, errorMessage }
+	const debounceGetProducts = useCallback(
+		debounce((newQuery) => {
+			onSearch(newQuery)
+		}, 300),
+		[products]
+	)
+
+	const handleChange = (e) => {
+		const newQuery = e.target.value
+		if (newQuery.startsWith(' ')) return
+		debounceGetProducts(newQuery)
+	}
+
+	return { handleChange, errorMessage }
 }
