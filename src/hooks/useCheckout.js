@@ -1,18 +1,15 @@
-import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ProductContext } from '../context'
+import { useSelector } from 'react-redux'
+import { getCurrentUserDetails } from '../redux/slices/users/usersSelectors'
 
 export function useCheckout() {
-	const { username, setErrorCheckout } = useContext(ProductContext)
+	const { username } = useSelector(getCurrentUserDetails)
 
 	const navigate = useNavigate()
 	const handeCheckout = (e) => {
 		e.preventDefault()
 
-		if (!username) {
-			navigate('/login')
-			setErrorCheckout('Please log in to complete your checkout')
-		}
+		if (!username) navigate('/login')
 	}
 	return { handeCheckout }
 }
