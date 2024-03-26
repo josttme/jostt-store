@@ -46,9 +46,9 @@ export function useAuthLogin(users, favorites, cartItems, dispatch) {
 		const user = Object.fromEntries(new FormData(e.target))
 		const { username, email, password } = user
 
-		const isUserExist = isExist('username', username)
-		const isEmailExist = isExist('email', email)
-		const isPasswordExist = isExist('password', password)
+		const isUserExist = isExist(users, 'username', username)
+		const isEmailExist = isExist(users, 'email', email)
+		const isPasswordExist = isExist(users, 'password', password)
 
 		const loginedUser = () => {
 			const updateUser = updateUserFavCart(users, user, favorites, cartItems)
