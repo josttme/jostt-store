@@ -1,6 +1,11 @@
 import { useState } from 'react'
-import { setCurrentUser } from '../../redux/slices/sessionSlice'
-import { loginUser, removeAllCart, removeAllLikes } from '../../redux/slices'
+import {
+	setCurrentUser,
+	loginUser,
+	removeAllLikes,
+	removeAllCart
+} from '../../redux/slices'
+
 import { isExist } from './authUtils'
 
 export function useAuthLogin(users, favorites, cartItems, dispatch) {

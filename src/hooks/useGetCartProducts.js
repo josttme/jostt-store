@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux'
-import { getCurrentUserDetails } from '../redux/slices/users/usersSelectors'
-import { selectCartItems } from '../redux/slices'
+import { getCurrentUserDetails, selectCartItems } from '../redux/slices'
 
 export const useGetCartProducts = () => {
 	const username = useSelector(getCurrentUserDetails)

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { getCurrentUserDetails } from '../redux/slices/users/usersSelectors'
+import { getCurrentUserDetails } from '../redux/slices'
 
 export function useCheckout() {
 	const { username } = useSelector(getCurrentUserDetails)

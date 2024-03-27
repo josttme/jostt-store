@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux'
-import { getCurrentUserDetails } from '../redux/slices/users/usersSelectors'
-import { selectLikes } from '../redux/slices/likesSelectors'
+import { getCurrentUserDetails, selectLikes } from '../redux/slices'
 
 export const useGetFavorites = () => {
 	const username = useSelector(getCurrentUserDetails)

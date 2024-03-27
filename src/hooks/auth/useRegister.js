@@ -1,7 +1,11 @@
 import { useState } from 'react'
-import { addUser } from '../../redux/slices/users/usersSlice'
-import { setCurrentUser } from '../../redux/slices/sessionSlice'
-import { removeAllCart, removeAllLikes } from '../../redux/slices'
+import {
+	addUser,
+	setCurrentUser,
+	removeAllLikes,
+	removeAllCart
+} from '../../redux/slices'
+
 import { isExist } from './authUtils'
 
 export function useRegister(users, favorites, cartItems, dispatch) {

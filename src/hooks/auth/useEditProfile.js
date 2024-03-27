@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { editUser, setCurrentUser } from '../../redux/slices'
 import { isExist } from './authUtils'
+import { setCurrentUser, editUser } from '../../redux/slices'
 
 export function useAuthEditProfile(users, currentUser, dispatch) {
 	const [messageError, setMessageError] = useState('')
