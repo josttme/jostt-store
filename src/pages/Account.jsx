@@ -1,21 +1,22 @@
-import { useContext, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { ProductContext } from '@context'
-import { getUserByUsername, useResetScroll } from '@utils'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCurrentUserDetails, clearCurrentUser } from '../redux/slices'
 import { EditProfile } from '@components/account/EditProfile'
 import { RemoveUserModal } from '@components/account/RemoveUserModal'
 import { CustomButton } from '@components/account/CustomButton'
+import { useResetScroll } from '@utils'
 
 export function Account() {
+	const dispatch = useDispatch()
 	const [editUserData, setEditUserData] = useState(false)
 	const [closeModal, setCloseModal] = useState(false)
-	const { username, usersExisting, setUsername } = useContext(ProductContext)
-	const { email } = getUserByUsername({ username, usersExisting })
+
+	const { username, email } = useSelector(getCurrentUserDetails)
 
 	const firstTwoLetters = username.substring(0, 2).toUpperCase()
 	// Scroll al principio de la página cuando se cambia de ruta.
-	const { pathname } = useLocation()
-	useResetScroll([pathname])
+	useResetScroll([username])
 	return (
 		<main className="mx-auto flex min-h-[80vh] w-full max-w-sm flex-col pt-10 ">
 			<header className="flex flex-col items-center space-y-2">
@@ -35,7 +36,7 @@ export function Account() {
 				</CustomButton>
 				<Link to="/login">
 					<CustomButton
-						onClick={() => setUsername('')}
+						onClick={() => dispatch(clearCurrentUser())}
 						className="bg-[#0a7beb] hover:bg-[#1b99ff]"
 					>
 						Log Out
