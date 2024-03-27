@@ -1,24 +1,22 @@
 import { PropTypes } from 'prop-types'
-import { useContext, useEffect, useState } from 'react'
-import { ProductContext } from '@context'
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { SvgRemove } from '@components/icons/SvgRemove'
+import { useGetCartProducts } from '../hooks/useGetCartProducts'
+import { useCartActions } from '../hooks/useCartProduct'
 import { useCheckout } from '@hooks/useCheckout'
+import { SvgRemove } from '@components/icons/SvgRemove'
 import { useResetScroll } from '@utils'
 
 export function Cart() {
-	const { cartItems, quantityProducts } = useContext(ProductContext)
+	const { cartProducts, quantityProducts } = useGetCartProducts()
 	const { handeCheckout } = useCheckout()
 
+	const totalPrice = cartProducts.reduce((total, product) => {
+		return total + product.price * product.quantity
+	}, 0)
 	// Scroll al principio de la página cuando se cambia de ruta.
 	const { pathname } = useLocation()
 	useResetScroll([pathname])
-	const calculateCartTotalPrice = (cartItems) => {
-		return cartItems.reduce((totalPrice, item) => {
-			return totalPrice + item.price * item.quantity
-		}, 0)
-	}
-	const total = calculateCartTotalPrice(cartItems)
 
 	return (
 		<section className="min-h-[80vh] flex-grow  pb-52 ">
@@ -30,14 +28,14 @@ export function Cart() {
 				</div>
 				<div className="felx  flex-col ">
 					<ul className="space-y-6">
-						{cartItems.map((product) => (
+						{cartProducts.map((product) => (
 							<CartProduct key={product.id} {...product} />
 						))}
 					</ul>
 				</div>
 				{quantityProducts > 0 && (
 					<div className="mt-12 flex flex-col gap-4 ">
-						<span className="self-end text-xl">Total: {`$${total}`}</span>
+						<span className="self-end text-xl">Total: {`$${totalPrice}`}</span>
 
 						<div className="self-end text-center ">
 							<button
@@ -58,18 +56,23 @@ export function Cart() {
 export function CartProduct(product) {
 	const [isLoading, setIsLoading] = useState(false)
 	const { name, price, mainImage, quantity } = product
-	const { removeFromCart, increaseQuantity, decreaseQuantity } =
-		useContext(ProductContext)
+	const {
+		handleRemoveFromCart,
+		handleIncreaseQuantity,
+		handleDecreaseQuantity
+	} = useCartActions()
 
-	const [subtotal, setSubtotal] = useState(0)
+	const increase = () => {
+		handleIncreaseQuantity({ product })
+	}
+	const decrease = () => {
+		handleDecreaseQuantity({ product })
+	}
+	const removeProduct = () => {
+		handleRemoveFromCart({ product })
+	}
+	const subtotal = price * quantity
 
-	const decrease = () => decreaseQuantity(product)
-	const increase = () => increaseQuantity(product)
-	const removeProduct = () => removeFromCart(product)
-
-	useEffect(() => {
-		setSubtotal(price * quantity)
-	}, [quantity])
 	return (
 		<>
 			<li className="relative grid h-36 grid-cols-6 grid-rows-3  md:h-20 md:grid-cols-7 md:grid-rows-2">
@@ -103,7 +106,10 @@ export function CartProduct(product) {
 					<div className="grid w-full grid-cols-3 place-items-center  overflow-hidden rounded-md border border-black/20 ">
 						<button
 							type="button"
-							className=" w-full text-2xl  leading-10 text-black/50 transition hover:bg-gray-1  hover:text-black hover:opacity-75"
+							className={`w-full text-2xl  leading-10 text-black/50 transition hover:bg-gray-1  hover:text-black hover:opacity-75
+							${quantity === 1 ? 'cursor-not-allowed' : ''}
+							`}
+							disabled={quantity === 1}
 							onClick={decrease}
 						>
 							-
