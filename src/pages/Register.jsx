@@ -1,4 +1,5 @@
-import { useAuthRegister } from '@hooks/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { useRegister } from '../hooks/auth/useRegister'
 import {
 	FormHeader,
 	FormField,
@@ -7,7 +8,18 @@ import {
 } from '@components/form/'
 
 export function Register() {
-	const { handleRegisterSubmit, messageError } = useAuthRegister()
+	const dispatch = useDispatch()
+	const users = useSelector((state) => state.storeUsers.users)
+	const favorites = useSelector((state) => state.storeLikes.likes)
+	const cartItems = useSelector((state) => state.storeCart.cart)
+
+	const { handleRegisterSubmit, messageError } = useRegister(
+		users,
+		favorites,
+		cartItems,
+		dispatch
+	)
+
 	return (
 		<main className="flex min-h-[80vh]  w-full flex-col items-center justify-center bg-gray-50 sm:px-4">
 			<section className="w-full max-w-md space-y-10 px-2 pb-20 pt-10 text-gray-600">
