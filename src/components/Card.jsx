@@ -1,45 +1,24 @@
 import PropTypes from 'prop-types'
-import { SvgCartPlus } from './icons/SvgCartPlus'
-import { SvgHeart } from './icons/SvgHeart'
 import Image from './Image'
 import { CategoryButton } from './CategoryButton'
+import { FavoriteButton } from './FavoriteButton'
+import { AddToCartButton } from './AddToCartButton'
+import { useNavigate } from 'react-router-dom'
+import { useNavigation } from '@utils'
 
-function Card({
-	name,
-	price,
-	mainImage,
-	categoryName,
-	categoryId,
-	navigateToProduct,
-	toggledFavorites,
-	isFavorite,
-	addToCart
-}) {
+function Card({ product, navigateToProduct }) {
 	// Estado para controlar la carga de la imagen
-
-	const favorite = isFavorite ? 'fill-red-6 stroke-red-6' : 'fill-none'
-
+	const { name, price, mainImage, categoryName, categoryId } = product
 	return (
 		<div
 			onClick={navigateToProduct}
 			className=" z-10 flex w-full max-w-sm cursor-pointer flex-col gap-2 overflow-hidden rounded-lg pb-2 transition-opacity duration-200  lg:grid lg:aspect-[3/4] lg:w-80 lg:bg-white lg:pb-4 lg:shadow-card lg:hover:shadow-cardHover "
 		>
 			<figure className="relative w-full">
-				<div
-					onClick={(e) => e.stopPropagation()}
-					className="absolute right-2  top-2 z-20"
-				>
-					<button
-						type="button"
-						onClick={toggledFavorites}
-						title="Like"
-						className="grid h-8 w-8 place-content-center rounded-full bg-slate-100/80 transition duration-300 hover:bg-white/90 hover:stroke-red-6"
-					>
-						<SvgHeart
-							className={`${favorite} grid h-5 w-5 place-content-center stroke-black stroke-[1.3] lg:stroke-[1.6]  lg:hover:stroke-red-6`}
-						/>
-					</button>
-				</div>
+				<FavoriteButton
+					product={product}
+					className="absolute right-2 top-2 z-20 h-8 w-8"
+				/>
 				<div className="relative">
 					<Image src={mainImage} title={name} />
 					<CategoryButton category={categoryName} categoryId={categoryId} />
@@ -48,17 +27,7 @@ function Card({
 
 			<div className="flex w-full items-center justify-between px-2 lg:px-5">
 				<p className=" text-3xl font-bold text-red-6">{`$${price}`}</p>
-				<div
-					onClick={addToCart}
-					className="relative flex items-center rounded-md before:absolute before:h-full before:w-full before:rounded-md  hover:before:bg-black/10  lg:bg-gradient-to-r lg:from-red-1 lg:via-red-4 lg:via-30%   lg:to-red-7"
-				>
-					<div className="w-10 rounded-l-md rounded-r-md bg-red-1 p-1 lg:rounded-r-none  ">
-						<SvgCartPlus className="fill-red-5 stroke-red-5" />
-					</div>
-					<span className=" hidden px-1 text-center text-sm text-white lg:block lg:px-2">
-						Add to cart
-					</span>
-				</div>
+				<AddToCartButton product={product} />
 			</div>
 			<h1 className="inline-block h-min max-w-48 overflow-hidden text-ellipsis px-2  text-xl hover:underline lg:max-w-full  lg:px-5 lg:text-xl">
 				{name}
@@ -83,29 +52,30 @@ function ProductSkeleton() {
 		</>
 	)
 }
-export function CardProduct({
+export function ProductsList({
 	products,
-	addToCart,
-	navigateToProduct,
-	toggledFavorites,
-	isFavorite,
-	favorites
+	favorites,
+	isLoading,
+	firstIndex,
+	lastIndex
 }) {
+	const navigate = useNavigate()
+	const { navigateToProduct } = useNavigation(navigate)
+
 	return (
 		<>
 			<div className="mx-auto w-full max-w-5xl px-2 pb-10 lg:px-4">
 				<section className="mx-auto grid w-full grid-cols-[repeat(auto-fit,minmax(150px,1fr))] justify-items-center gap-2 pt-5 lg:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:gap-4 ">
-					{products?.length !== 0 || favorites ? (
-						products?.map((product) => (
-							<Card
-								key={product.id}
-								{...product}
-								navigateToProduct={() => navigateToProduct(product.id)}
-								toggledFavorites={(e) => toggledFavorites(e, product)}
-								isFavorite={isFavorite(product)}
-								addToCart={(e) => addToCart(e, product)}
-							/>
-						))
+					{products?.length !== 0 || !isLoading || favorites ? (
+						products
+							?.map((product) => (
+								<Card
+									key={product.id}
+									product={product}
+									navigateToProduct={() => navigateToProduct(product.id)}
+								/>
+							))
+							.slice(firstIndex, lastIndex)
 					) : (
 						<ProductSkeleton />
 					)}
@@ -123,23 +93,16 @@ export function CardProduct({
 		</>
 	)
 }
-CardProduct.propTypes = {
+ProductsList.propTypes = {
+	isLoading: PropTypes.bool,
 	products: PropTypes.array.isRequired,
-	addToCart: PropTypes.func.isRequired,
-	navigateToProduct: PropTypes.func.isRequired,
-	toggledFavorites: PropTypes.func.isRequired,
-	isFavorite: PropTypes.func.isRequired,
-	favorites: PropTypes.bool
+	favorites: PropTypes.bool,
+	firstIndex: PropTypes.number,
+	lastIndex: PropTypes.number
 }
 
 Card.propTypes = {
-	name: PropTypes.string.isRequired,
-	price: PropTypes.number.isRequired,
-	mainImage: PropTypes.string.isRequired,
-	categoryName: PropTypes.string.isRequired,
-	categoryId: PropTypes.string.isRequired,
+	product: PropTypes.object,
 	navigateToProduct: PropTypes.func,
-	toggledFavorites: PropTypes.func,
-	isFavorite: PropTypes.bool,
 	addToCart: PropTypes.func
 }
