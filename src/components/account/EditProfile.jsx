@@ -3,7 +3,7 @@ import { FormField, FomtButton, FormMessage } from '../form'
 import { SvgClosed } from '../icons/SvgClosed'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAuthEditProfile } from '../../hooks/auth/useEditProfile'
-import { getCurrentUserDetails } from '../../redux/slices/users/usersSelectors'
+import { getCurrentUserDetails } from '../../redux/slices'
 
 export function EditProfile({ setEditUserData, editUserData }) {
 	const dispatch = useDispatch()

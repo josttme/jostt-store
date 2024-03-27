@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
-import { CustomButton } from './CustomButton'
 import { useDispatch } from 'react-redux'
-import { clearCurrentUser, removeUser } from '../../redux/slices'
+import { removeUser, clearCurrentUser } from '../../redux/slices'
+import { CustomButton } from './CustomButton'
 
 export function RemoveUserModal({ username, setCloseModal, closeModal }) {
 	if (!closeModal) return
