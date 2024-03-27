@@ -1,11 +1,11 @@
 import { PropTypes } from 'prop-types'
 import { SvgHeart } from './icons/SvgHeart'
-import { useFavorites } from '../hooks/useFavorites'
+import { useGetFavorites } from '../hooks/useGetFavorites'
 import { useToggleFavorite } from '../hooks/useToggleFavorite'
 
 export function FavoriteButton({ product, className }) {
 	const toggleFavorite = useToggleFavorite()
-	const favorites = useFavorites()
+	const favorites = useGetFavorites()
 
 	const isLiked = favorites?.some((like) => like.id === product.id)
 
