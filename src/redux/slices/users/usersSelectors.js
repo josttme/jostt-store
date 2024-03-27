@@ -2,7 +2,8 @@ import { createSelector } from '@reduxjs/toolkit'
 
 // Selector para obtener el usuario actual del estado
 // const getCurrentUser = (state) => state.user.currentUser
-const getCurrentUser = (state) => state.storeCurrenUser.currentUser
+export const getCurrentUser = (state) => state.storeCurrenUser.currentUser
+
 // Selector para obtener la lista de usuarios del estado
 // const getUsers = (state) => state.users.allUsers
 const getUsers = (state) => state.storeUsers.users
@@ -33,14 +34,3 @@ export const getCurrentUserDetails = createSelector(
 		}
 	}
 )
-
-export const getSumProductSubtotal = createSelector((currentUser, users) => {
-	// Si no hay un usuario actual, devuelve un objeto vacío
-	if (!currentUser) return ''
-	// Encuentra el usuario actual en la lista de usuarios
-	const user = findUserByUsername(users, currentUser)
-	console.log(user)
-	/* selectCartItems(state).find((item) => item.id === productId),
-			(product) => (product ? product.price * product.quantity : 0) */
-	return users
-})
