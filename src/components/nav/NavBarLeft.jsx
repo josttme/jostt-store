@@ -1,9 +1,12 @@
 import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { getCurrentUserDetails } from '../../redux/slices'
 import { ProductContext } from '@context'
 
 export function NavBarLeft() {
-	const { username, openNavBar, setOpenNavBar } = useContext(ProductContext)
+	const { username } = useSelector(getCurrentUserDetails)
+	const { openNavBar, setOpenNavBar } = useContext(ProductContext)
 	const activeClass = 'border border-black iphone678:py-1 px-5 rounded-md   '
 	const classDefault =
 		'rounded-md  px-5 border  iphone678:py-1 border-transparent  '

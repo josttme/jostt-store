@@ -1,16 +1,17 @@
+import { useContext } from 'react'
+import { useGetCartProducts } from '../../hooks/useGetCartProducts'
+import { ProductContext } from '@context'
+import { NavLinkActivated } from './NavLinkActivated'
 import { SvgHome } from '../icons/SvgHome'
 import { SvgUser } from '../icons/SvgUser'
 import { SvgHeart } from '../icons/SvgHeart'
 import { SvgBurger } from '../icons/SvgBurger'
 import { SvgCart } from '../icons/SvgCart'
-import { useContext } from 'react'
-import { ProductContext } from '@context'
 import { SvgClosed } from '../icons/SvgClosed'
-import { NavLinkActivated } from './NavLinkActivated'
 
 export function NavBarBottom() {
-	const { openNavBar, setOpenNavBar, quantityProducts } =
-		useContext(ProductContext)
+	const { openNavBar, setOpenNavBar } = useContext(ProductContext)
+	const { quantityProducts } = useGetCartProducts()
 	return (
 		<nav className="nav-bar fixed bottom-0 left-0 z-40 flex h-14 w-screen justify-between  justify-items-center bg-slate-500 text-sm lg:hidden ">
 			<div

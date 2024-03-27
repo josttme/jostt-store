@@ -1,11 +1,13 @@
-import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { ProductContext } from '@context'
+import { useSelector } from 'react-redux'
+import { getCurrentUserDetails } from '../../redux/slices'
+import { useGetCartProducts } from '../../hooks/useGetCartProducts'
 import { SvgCart } from '@components/icons/SvgCart'
 import { SvgUser } from '@components/icons/SvgUser'
 
 export function NavBar() {
-	const { username, quantityProducts } = useContext(ProductContext)
+	const { username } = useSelector(getCurrentUserDetails)
+	const { quantityProducts } = useGetCartProducts()
 	const activeClass = 'bg-gray-1 rounded-md p-1 px-2'
 	const classDefault = 'rounded-md p-1 px-2 duration-150 hover:bg-gray-1'
 	return (
